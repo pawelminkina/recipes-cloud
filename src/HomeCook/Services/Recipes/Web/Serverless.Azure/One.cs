@@ -1,14 +1,24 @@
 ﻿using System.Net;
+using System.Text.Json;
+using Application.Queries.AllRecipes;
+using MediatR;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Azure.Functions.Worker.Http;
+using Microsoft.Azure.WebJobs;
 using Microsoft.Extensions.Logging;
 
 namespace Serverless.Azure
 {
-    public static class One
+    public class One
     {
+        private readonly IMediator _mediator;
+
+        public One(IMediator mediator)
+        {
+            _mediator = mediator;
+        }
         [Function("One")]
-        public static HttpResponseData Run([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post")] HttpRequestData req,
+        public async Task<HttpResponseData> Run([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post")] HttpRequestData req,
             FunctionContext executionContext)
         {
             var logger = executionContext.GetLogger("HttpExample");
@@ -17,7 +27,9 @@ namespace Serverless.Azure
             var response = req.CreateResponse(HttpStatusCode.OK);
             response.Headers.Add("Content-Type", "text/plain; charset=utf-8");
 
-            response.WriteString("Welcome to Azure Functions!");
+            var res = await _mediator.Send(new AllRecipesQuery());
+
+            await response.WriteStringAsync(JsonSerializer.Serialize(res));
 
             return response;
         }

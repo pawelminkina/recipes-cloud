@@ -1,6 +1,6 @@
 ﻿using Application.Common.Interfaces;
 using Infrastructure.DbContexts;
-using Infrastructure.POCO;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -10,10 +10,11 @@ public static class DependencyInjection
 {
     public static void AddInfrastructure(this IServiceCollection serviceCollection, IConfiguration configuration)
     {
-        serviceCollection.AddDbContext<RecipeDbContext>();
+        serviceCollection.AddDbContext<RecipeDbContext>(options =>
+        {
+            options.UseSqlServer(configuration.GetValue<string>("RecipeDatabaseConnectionString"));
+        });
 
         serviceCollection.AddScoped<IRecipeDbContext, RecipeDbContext>();
-
-        serviceCollection.AddOptions<DatabaseOptions>().Bind(configuration.GetSection("DatabaseOptions"));
     }
 }

@@ -1,11 +1,13 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using MediatR;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Application;
 
 public static class DependencyInjection
 {
-    public static void AddApplication(this IServiceCollection serviceCollection, IConfiguration configuration)
+    public static void AddApplication(this IServiceCollection serviceCollection)
     {
+        serviceCollection.AddMediatR(typeof(DependencyInjection).Assembly);
     }
 }
