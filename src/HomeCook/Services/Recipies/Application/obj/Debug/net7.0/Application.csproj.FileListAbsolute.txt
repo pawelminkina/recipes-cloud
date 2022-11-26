@@ -1,0 +1,12 @@
+C:\code\recipies-cloud\src\HomeCook\Services\Recipies\Application\bin\Debug\net7.0\Application.deps.json
+C:\code\recipies-cloud\src\HomeCook\Services\Recipies\Application\bin\Debug\net7.0\Application.dll
+C:\code\recipies-cloud\src\HomeCook\Services\Recipies\Application\bin\Debug\net7.0\Application.pdb
+C:\code\recipies-cloud\src\HomeCook\Services\Recipies\Application\obj\Debug\net7.0\Application.csproj.AssemblyReference.cache
+C:\code\recipies-cloud\src\HomeCook\Services\Recipies\Application\obj\Debug\net7.0\Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\code\recipies-cloud\src\HomeCook\Services\Recipies\Application\obj\Debug\net7.0\Application.AssemblyInfoInputs.cache
+C:\code\recipies-cloud\src\HomeCook\Services\Recipies\Application\obj\Debug\net7.0\Application.AssemblyInfo.cs
+C:\code\recipies-cloud\src\HomeCook\Services\Recipies\Application\obj\Debug\net7.0\Application.csproj.CoreCompileInputs.cache
+C:\code\recipies-cloud\src\HomeCook\Services\Recipies\Application\obj\Debug\net7.0\Application.dll
+C:\code\recipies-cloud\src\HomeCook\Services\Recipies\Application\obj\Debug\net7.0\refint\Application.dll
+C:\code\recipies-cloud\src\HomeCook\Services\Recipies\Application\obj\Debug\net7.0\Application.pdb
+C:\code\recipies-cloud\src\HomeCook\Services\Recipies\Application\obj\Debug\net7.0\ref\Application.dll
