@@ -6,5 +6,5 @@ public record Recipe
     public string Title { get; init; }
     public string Content { get; init; }
     public string AuthorEmail { get; init; }
-    public string MainPhotoPath { get; init; }
+    public Guid MainPhotoId { get; init; }
 }
