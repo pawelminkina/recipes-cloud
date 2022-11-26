@@ -1,5 +1,5 @@
 # recipies-cloud
-Plan to stworzyć aplikacje, która będzie trzymała przepisy, zwracała ich liste, posiadała opcje dodania nowego przepisu, opcje zewnetrznych linkow z przepisami aktualizowaną z zewnątrz, dodawanie zdjec wykonanych przepisow przez uzytkownikow. Na wstepnie bez autoryzacji, ale to sie potem okaze czy aby na pewno
+Plan is to create application, which will have recipies, display the list of thme, have ability of adding new one, option to return external links with recipies from outside, adding reviews of recipies by users. On the beginning without any auth, later I'll decide what to do with it.
 ![First architecture](./img/Plan-architecture.jpg)
 Deploy to:
 - Azure
@@ -8,4 +8,3 @@ Deploy to:
 - Docker with gRPC
 # Cost
 ![koszt](./img/cost-azure.png)
-
