@@ -2,5 +2,5 @@
 
 public record PhotoToAdd
 {
-    public string Path { get; }
+    public string Path { get; set; }
 }
