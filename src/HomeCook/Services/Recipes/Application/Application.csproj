@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Commands\CreateRecipe\" />
     <Folder Include="Common\Interfaces\" />
   </ItemGroup>
 

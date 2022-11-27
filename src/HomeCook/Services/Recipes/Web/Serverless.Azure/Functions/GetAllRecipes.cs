@@ -21,7 +21,7 @@ public class GetAllRecipes
         var res = await _mediator.Send(new AllRecipesQuery());
 
         var response = req.CreateResponse(HttpStatusCode.OK);
-        response.Headers.Add("Content-Type", "text/plain; charset=utf-8");
+        response.Headers.Add("Content-Type", "application/json");
 
         await response.WriteStringAsync(JsonSerializer.Serialize(res));
 

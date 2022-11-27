@@ -19,11 +19,10 @@ public class GetRecipe
     [Function("GetRecipe")]
     public async Task<HttpResponseData> Run([HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "Recipe/{id:guid}")] HttpRequestData req, Guid id)
     {
-        //TODO
         var res = await _mediator.Send(new DetailedRecipeQuery(id));
 
         var response = req.CreateResponse(HttpStatusCode.OK);
-        response.Headers.Add("Content-Type", "text/plain; charset=utf-8");
+        response.Headers.Add("Content-Type", "application/json");
 
         await response.WriteStringAsync(JsonSerializer.Serialize(res));
 
