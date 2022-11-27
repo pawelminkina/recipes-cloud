@@ -35,9 +35,6 @@ namespace Infrastructure.Migrations
                     b.Property<Guid?>("RelatedReviewId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTime>("TimeUploadedUtc")
-                        .HasColumnType("datetime2");
-
                     b.HasKey("Id");
 
                     b.HasIndex("RelatedReviewId");
@@ -57,9 +54,6 @@ namespace Infrastructure.Migrations
 
                     b.Property<Guid>("IdOfRelatedRecipe")
                         .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("TimeCreatedUtc")
-                        .HasColumnType("datetime2");
 
                     b.Property<string>("Title")
                         .IsRequired()

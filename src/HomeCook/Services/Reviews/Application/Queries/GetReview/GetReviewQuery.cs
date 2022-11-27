@@ -1,5 +1,6 @@
 ﻿using Application.Common.Interfaces;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 
 namespace Application.Queries.GetReview;
 
@@ -23,7 +24,7 @@ public class GetReviewQueryHandler : IRequestHandler<GetReviewQuery, Review?>
     }
     public async Task<Review?> Handle(GetReviewQuery request, CancellationToken cancellationToken)
     {
-        var review = await _dbContext.Reviews.FindAsync(request.ReviewId, cancellationToken);
+        var review = await _dbContext.Reviews.Include(s => s.Photos).FirstOrDefaultAsync(s=>s.Id == request.ReviewId, cancellationToken);
 
         return review == null ? null : Review.CreateFromDomain(review);
     }
