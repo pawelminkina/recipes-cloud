@@ -1341,7 +1341,6 @@
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
           "Application": "1.0.0",
-          "Domain": "1.0.0",
           "Microsoft.EntityFrameworkCore.Relational": "7.0.0",
           "Microsoft.EntityFrameworkCore.SqlServer": "7.0.0",
           "Microsoft.Extensions.Options.ConfigurationExtensions": "7.0.0"
@@ -4088,18 +4087,18 @@
     },
     "Application/1.0.0": {
       "type": "project",
-      "path": "../Services/Recipes/Application/Application.csproj",
-      "msbuildProject": "../Services/Recipes/Application/Application.csproj"
+      "path": "../Services/Reviews/Application/Application.csproj",
+      "msbuildProject": "../Services/Reviews/Application/Application.csproj"
     },
     "Domain/1.0.0": {
       "type": "project",
-      "path": "../Services/Recipes/Domain/Domain.csproj",
-      "msbuildProject": "../Services/Recipes/Domain/Domain.csproj"
+      "path": "../Services/Reviews/Domain/Domain.csproj",
+      "msbuildProject": "../Services/Reviews/Domain/Domain.csproj"
     },
     "Infrastructure/1.0.0": {
       "type": "project",
-      "path": "../Services/Recipes/Infrastructure/Infrastructure.csproj",
-      "msbuildProject": "../Services/Recipes/Infrastructure/Infrastructure.csproj"
+      "path": "../Services/Reviews/Infrastructure/Infrastructure.csproj",
+      "msbuildProject": "../Services/Reviews/Infrastructure/Infrastructure.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -4146,8 +4145,8 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "C:\\code\\recipies-cloud\\src\\HomeCook\\Services\\Recipes\\Infrastructure\\Infrastructure.csproj": {
-              "projectPath": "C:\\code\\recipies-cloud\\src\\HomeCook\\Services\\Recipes\\Infrastructure\\Infrastructure.csproj"
+            "C:\\code\\recipies-cloud\\src\\HomeCook\\Services\\Reviews\\Infrastructure\\Infrastructure.csproj": {
+              "projectPath": "C:\\code\\recipies-cloud\\src\\HomeCook\\Services\\Reviews\\Infrastructure\\Infrastructure.csproj"
             }
           }
         }

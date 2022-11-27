@@ -10,3 +10,10 @@ C:\code\recipies-cloud\src\HomeCook\Services\Reviews\Infrastructure\obj\Debug\ne
 C:\code\recipies-cloud\src\HomeCook\Services\Reviews\Infrastructure\obj\Debug\net7.0\refint\Infrastructure.dll
 C:\code\recipies-cloud\src\HomeCook\Services\Reviews\Infrastructure\obj\Debug\net7.0\Infrastructure.pdb
 C:\code\recipies-cloud\src\HomeCook\Services\Reviews\Infrastructure\obj\Debug\net7.0\ref\Infrastructure.dll
+C:\code\recipies-cloud\src\HomeCook\Services\Reviews\Infrastructure\bin\Debug\net7.0\Infrastructure.runtimeconfig.json
+C:\code\recipies-cloud\src\HomeCook\Services\Reviews\Infrastructure\bin\Debug\net7.0\Application.dll
+C:\code\recipies-cloud\src\HomeCook\Services\Reviews\Infrastructure\bin\Debug\net7.0\Domain.dll
+C:\code\recipies-cloud\src\HomeCook\Services\Reviews\Infrastructure\bin\Debug\net7.0\Application.pdb
+C:\code\recipies-cloud\src\HomeCook\Services\Reviews\Infrastructure\bin\Debug\net7.0\Domain.pdb
+C:\code\recipies-cloud\src\HomeCook\Services\Reviews\Infrastructure\obj\Debug\net7.0\Infrastructure.csproj.CopyComplete
+C:\code\recipies-cloud\src\HomeCook\Services\Reviews\Infrastructure\obj\Debug\net7.0\Infrastructure.genruntimeconfig.cache
