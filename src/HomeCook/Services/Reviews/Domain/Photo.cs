@@ -1,6 +1,6 @@
 ﻿namespace Domain;
 
-public record Photo()
+public record Photo
 {
     public Guid Id { get; }
     public DateTime TimeUploadedUtc { get; } = DateTime.UtcNow;

@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
+	  <TargetFramework>net7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <Folder Include="Commands\AddPhoto\" />
+    <Folder Include="Commands\PhotoAdded\" />
     <Folder Include="Queries\GetReview\" />
     <Folder Include="Queries\GetPhoto\" />
   </ItemGroup>

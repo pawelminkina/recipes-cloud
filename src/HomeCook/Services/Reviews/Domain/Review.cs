@@ -2,7 +2,6 @@
 
 public record Review
 {
-
     public Guid Id { get; }
     public Guid IdOfRelatedRecipe { get; init; }
     public string Title { get; init; }
