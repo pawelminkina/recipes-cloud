@@ -8,3 +8,16 @@ Deploy to:
 - Docker with gRPC
 # Cost
 ![koszt](./img/cost-azure.png)
+
+##What is left:
+- Whole external sites project
+- External sites filler with time trigger
+- Refactor in case of namespaces, common approach to everything I see
+- Integration tests for all http request available
+- Make schema how UI need to look
+- Create most basic UI without styles which only gives all backend functionalities
+- Style UI in most simple possible way existing, for example bootstrap
+- If every step done, think about deployment (terraform, maybe that docker for local dev?)
+
+Nice to do:
+- Validators in mediator
