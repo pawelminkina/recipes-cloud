@@ -1,11 +1,11 @@
-﻿using MediatR;
-using Microsoft.Azure.Functions.Worker.Http;
-using Microsoft.Azure.Functions.Worker;
-using System.Net;
+﻿using System.Net;
 using System.Text.Json;
 using Application.Queries.GetPhoto;
+using MediatR;
+using Microsoft.Azure.Functions.Worker;
+using Microsoft.Azure.Functions.Worker.Http;
 
-namespace Serverless.Azure.Functions;
+namespace Serverless.Azure.Functions.Http;
 
 public class GetPhoto
 {
