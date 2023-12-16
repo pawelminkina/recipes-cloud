@@ -18,16 +18,16 @@ namespace Infrastructure.Migrations
                 columns: new[] { "Id", "Path" },
                 values: new object[,]
                 {
-                    { new Guid("13d9b14d-b06f-4a50-90c5-71435bdbe75e"), "photo8.png" },
-                    { new Guid("2c8dc7ca-2392-42c0-a525-fdaa992f8baa"), "photo10.png" },
-                    { new Guid("a1b2c3d4-e5f6-4768-abcd-1234567890ab"), "photo1.png" },
-                    { new Guid("a7b8c9da-ebfc-ae0f-abcd-1234567890f2"), "photo7.png" },
-                    { new Guid("b2c3d4e5-f6a7-5899-abcd-1234567890bc"), "photo2.png" },
-                    { new Guid("c2f7e61e-6da0-4ccd-9f7e-2e167e24fb9f"), "photo9.png" },
-                    { new Guid("c3d4e5f6-a7b8-6a9b-abcd-1234567890cd"), "photo3.png" },
-                    { new Guid("d4e5f6a7-b8c9-7bac-abcd-1234567890de"), "photo4.png" },
-                    { new Guid("e5f6a7b8-c9da-8cbd-abcd-1234567890ef"), "photo5.png" },
-                    { new Guid("f6a7b8c9-daeb-9dce-abcd-1234567890f1"), "photo6.png" }
+                    { new Guid("13d9b14d-b06f-4a50-90c5-71435bdbe75e"), "photo8.jpg" },
+                    { new Guid("2c8dc7ca-2392-42c0-a525-fdaa992f8baa"), "photo10.jpg" },
+                    { new Guid("a1b2c3d4-e5f6-4768-abcd-1234567890ab"), "photo1.jpg" },
+                    { new Guid("a7b8c9da-ebfc-ae0f-abcd-1234567890f2"), "photo7.jpg" },
+                    { new Guid("b2c3d4e5-f6a7-5899-abcd-1234567890bc"), "photo2.jpg" },
+                    { new Guid("c2f7e61e-6da0-4ccd-9f7e-2e167e24fb9f"), "photo9.jpg" },
+                    { new Guid("c3d4e5f6-a7b8-6a9b-abcd-1234567890cd"), "photo3.jpg" },
+                    { new Guid("d4e5f6a7-b8c9-7bac-abcd-1234567890de"), "photo4.jpg" },
+                    { new Guid("e5f6a7b8-c9da-8cbd-abcd-1234567890ef"), "photo5.jpg" },
+                    { new Guid("f6a7b8c9-daeb-9dce-abcd-1234567890f1"), "photo6.jpg" }
                 });
         }
 
