@@ -1,31 +1,23 @@
-﻿using Application.Config;
-using Application.Models.Recipes;
+﻿using Application.Models.Recipes;
 using Application.Services.Files;
-using Microsoft.Extensions.Options;
-using System.Net.Http.Json;
-using System.Text.Json;
-using System.Text;
+using Application.Services.Api;
 
 namespace Application.Services.Recipe;
 
 public class RecipeService : IRecipeService
 {
     private readonly IPhotoService _photoService;
-    private readonly IOptions<ServicesConfig> _serviceOptions;
-    private readonly HttpClient _httpClient;
+    private readonly IRecipeApiService _recipeApiService;
 
-    public RecipeService(IPhotoService photoService, IOptions<ServicesConfig> serviceOptions, IHttpClientFactory httpClientFactory)
+    public RecipeService(IPhotoService photoService, IRecipeApiService recipeApiService)
     {
         _photoService = photoService;
-        _serviceOptions = serviceOptions;
-        _httpClient = httpClientFactory.CreateClient();
+        _recipeApiService = recipeApiService;
     }
 
     public async Task<List<RecipeDto>> GetAllRecipes()
     {
-        var getAllRecipesUrl = $"{_serviceOptions.Value.RecipeServiceBaseUrl}/Recipe";
-        var response = await _httpClient.GetFromJsonAsync<List<RecipeToGet>>(getAllRecipesUrl);
-
+        var response = await _recipeApiService.GetRecipes();
         var recipes = await Task.WhenAll(response!.Select(AssignPhotoToRecipe));
 
         return recipes.ToList();
@@ -33,9 +25,7 @@ public class RecipeService : IRecipeService
 
     public async Task<RecipeDetailsDto> GetRecipeDetails(Guid id)
     {
-        var getRecipeDetailsUrl = $"{_serviceOptions.Value.RecipeServiceBaseUrl}/Recipe/{id}";
-        var response = await _httpClient.GetFromJsonAsync<DetailedRecipeToGet>(getRecipeDetailsUrl);
-
+        var response = await _recipeApiService.GetRecipe(id);
         var recipe = await AssignPhotoDetailsToRecipe(response!);
 
         return recipe;
@@ -45,25 +35,16 @@ public class RecipeService : IRecipeService
     {
         var addedPhotoId = await _photoService.AddPhoto(recipeToAddDto.MainPhoto, recipeToAddDto.FileExtension);
 
-        var addRecipeUrl = $"{_serviceOptions.Value.RecipeServiceBaseUrl}/Recipe";
-        var response = await _httpClient.PostAsync(addRecipeUrl, new StringContent(JsonSerializer.Serialize(new RecipeToAdd()
+        var recipeToAdd = new RecipeToAdd()
         {
             AuthorEmail = recipeToAddDto.AuthorEmail,
             Title = recipeToAddDto.Title,
             Content = recipeToAddDto.Content,
             MainPhotoId = addedPhotoId
-        }), Encoding.UTF8, "application/json"));
+        };
 
-        response.EnsureSuccessStatusCode();
-
-        var stringContent = await response.Content.ReadAsStringAsync();
-
-        if (string.IsNullOrEmpty(stringContent))
-        {
-            throw new InvalidOperationException("Adding photo failed and no id was returned");
-        }
-
-        return JsonSerializer.Deserialize<Guid>(stringContent);
+        var res = await _recipeApiService.AddRecipe(recipeToAdd);
+        return res;
     }
 
     private async Task<RecipeDto> AssignPhotoToRecipe(RecipeToGet recipeDto)
@@ -72,7 +53,7 @@ public class RecipeService : IRecipeService
         return new RecipeDto()
         {
             Id = recipeDto.Id,
-            MainPhoto = photo.Photo,
+            MainPhotoUrl = photo.PhotoUrl,
             AuthorEmail = recipeDto.AuthorEmail,
             Title = recipeDto.Title
         };
@@ -84,7 +65,7 @@ public class RecipeService : IRecipeService
         return new RecipeDetailsDto()
         {
             Id = recipeDto.Id,
-            MainPhoto = photo.Photo,
+            MainPhotoUrl = photo.PhotoUrl,
             AuthorEmail = recipeDto.AuthorEmail,
             Title = recipeDto.Title,
             Content = recipeDto.Content

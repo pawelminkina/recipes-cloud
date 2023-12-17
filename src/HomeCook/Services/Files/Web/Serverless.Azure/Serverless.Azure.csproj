@@ -27,6 +27,6 @@
     <Folder Include="Functions\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Application\Application.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\Infrastructure.csproj" />
   </ItemGroup>
 </Project>

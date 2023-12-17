@@ -1,7 +1,16 @@
-﻿@namespace UI.Components
+﻿@using BlazorStrap
+@namespace UI.Components
 
 <h3>here is my components</h3>
 
-@code {
-    
+@foreach (var recipe in Recipes)
+{
+    <BSCard CardType="CardType.Card" style="width: 18rem;">
+        <BSCard CardType="CardType.Image" src="@recipe.MainPhotoUrl" alt="Card image cap" />
+        <BSCard CardType="CardType.Body">
+            <BSCard CardType="CardType.Title">@recipe.Title</BSCard>
+            <BSCard CardType="CardType.Subtitle">@recipe.AuthorEmail</BSCard>
+            <BSButton Color="BSColor.Primary">Details</BSButton>
+        </BSCard>
+    </BSCard>
 }

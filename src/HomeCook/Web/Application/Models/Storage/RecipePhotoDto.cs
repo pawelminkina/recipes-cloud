@@ -2,6 +2,6 @@
 
 public class RecipePhotoDto
 {
-    public Stream Photo { get; set; } = Stream.Null;
+    public string PhotoUrl { get; set; } = string.Empty;
     public Guid Id { get; set; }
 }

@@ -2,7 +2,7 @@
   "profiles": {
     "Serverless.Azure": {
       "commandName": "Project",
-      "commandLineArgs": "host start --port 7075 --nodeDebugPort 5861"
+      "commandLineArgs": "host start --port 7074 --nodeDebugPort 5860"
     }
   }
 }

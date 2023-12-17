@@ -6,5 +6,5 @@ public record RecipeDetailsDto
     public string Title { get; set; }
     public string Content { get; set; }
     public string AuthorEmail { get; set; }
-    public Stream MainPhoto { get; set; }
+    public string MainPhotoUrl { get; set; }
 }
