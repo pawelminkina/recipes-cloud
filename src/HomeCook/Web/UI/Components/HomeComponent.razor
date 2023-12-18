@@ -1,8 +1,8 @@
 ﻿@namespace UI.Components
 
-<h3>here is my components</h3>
-
-@foreach (var recipe in Recipes)
-{
-    <RecipeCardComponent Recipe="@recipe" />
-}
+<div class="card-container">
+    @foreach (var recipe in Recipes)
+    {
+        <RecipeCardComponent Recipe="@recipe" />
+    }
+</div>
