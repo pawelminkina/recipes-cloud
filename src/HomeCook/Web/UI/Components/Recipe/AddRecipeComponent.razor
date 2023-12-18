@@ -1,0 +1,58 @@
+﻿@using BlazorStrap
+@using Microsoft.AspNetCore.Components
+@using Application.Services.Recipe
+@using Application.Models.Recipes
+@namespace UI.Components
+
+<div class="container">
+    <div class="row justify-content-center">
+        <EditForm Model="@RecipeToAdd" OnValidSubmit="@HandleValidSubmit">
+            <DataAnnotationsValidator />
+
+            <div class="col-lg-6 col-md-8">
+                <div class="mb-3">
+                    <BSLabel for="authorEmail">Author Email</BSLabel>
+                    <BSInput InputType="InputType.Email" placeholder="name@example.com" id="authorEmail" @bind-Value="@RecipeToAdd.AuthorEmail" />
+                    <ValidationMessage For="@(() => RecipeToAdd.AuthorEmail)" />
+                </div>
+                <div class="mb-3">
+                    <BSLabel for="title">Title</BSLabel>
+                    <BSInput InputType="InputType.Text" placeholder="Enter title" id="title" @bind-Value="@RecipeToAdd.Title" />
+                </div>
+                <div class="mb-3">
+                    <BSLabel for="fileInput">Main Photo</BSLabel>
+                    <InputFile class="form-control" id="fileInput" accept="image/png, image/jpeg, image/gif" @bind-Value="@RecipeToAdd.MainPhotoFile" OnChange="@HandleFileSelected" />
+                    <ValidationMessage For="@(() => RecipeToAdd.MainPhotoFile)" />
+                </div>
+                <div class="mb-3">
+                    <BSLabel for="content">Content</BSLabel>
+                    <BSInput InputType="InputType.TextArea" id="content" @bind-Value="@RecipeToAdd.Content" />
+                </div>
+                <BSButton Color="BSColor.Success" type="submit">Submit</BSButton>
+            </div>
+
+        </EditForm>
+
+    </div>
+</div>
+@code {
+    private RecipeToAddDto RecipeToAdd = new RecipeToAddDto();
+
+    private async Task HandleFileSelected(InputFileChangeEventArgs e)
+    {
+        var file = e.File;
+        if (file != null)
+        {
+            RecipeToAdd.MainPhoto = file.OpenReadStream();
+            RecipeToAdd.FileExtension = Path.GetExtension(file.Name);
+            RecipeToAdd.MainPhotoFile = file;
+        }
+    }
+
+    private void HandleValidSubmit()
+    {
+    // Handle the form submission
+    }
+    
+
+}

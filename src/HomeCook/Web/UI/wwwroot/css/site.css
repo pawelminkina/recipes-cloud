@@ -34,6 +34,20 @@ a, .btn-link {
   box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
 
+.card-container .add-new-button {
+    display: block; /* Makes the button a block element */
+    width: 100%; /* Full width of the container */
+    max-width: 300px; /* Same as your cards */
+    margin: 10px auto; /* Centers the button with automatic margins */
+    margin-bottom: 30px;
+}
+.spinner-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full viewport height */
+}
+
 .content {
     padding-top: 1.1rem;
 }

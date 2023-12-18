@@ -1,8 +1,20 @@
-﻿@namespace UI.Components
+﻿@using BlazorStrap
+@namespace UI.Components
 
 <div class="card-container">
-    @foreach (var recipe in Recipes)
+    <a href="/recipe" class="btn btn-primary add-new-button">Add new</a>
+
+    @if (IsLoading)
     {
-        <RecipeCardComponent Recipe="@recipe" />
+        <div class="spinner-container">
+            <BSSpinner Color="BSColor.Primary" />
+        </div>
+    }
+    else
+    {
+        @foreach (var recipe in Recipes)
+        {
+            <RecipeCardComponent Recipe="@recipe" />
+        }
     }
 </div>
