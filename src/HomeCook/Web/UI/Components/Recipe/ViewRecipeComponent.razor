@@ -1,0 +1,35 @@
+﻿@namespace UI.Components
+
+@if (Recipe != null)
+{
+    <BSContainer fluid>
+        <BSRow>
+            <BSCol>
+                <BSCol>
+                    <div style="height: 200px; background-image: url('@Recipe.MainPhotoUrl'); background-size: cover; background-position: center;"></div>
+                </BSCol>
+            </BSCol>
+        </BSRow>
+        <BSRow class="mt-3">
+            <BSCol>
+                <h2 class="text-center">@Recipe.Title</h2>
+            </BSCol>
+        </BSRow>
+        <BSRow class="mt-2">
+            <BSCol>
+                <p>@Recipe.Content</p>
+            </BSCol>
+        </BSRow>
+        <BSRow>
+            <BSCol>
+                <div class="text-end mt-2">
+                    <small>@Recipe.AuthorEmail</small>
+                </div>
+            </BSCol>
+        </BSRow>
+    </BSContainer>
+}
+
+@code{
+
+}

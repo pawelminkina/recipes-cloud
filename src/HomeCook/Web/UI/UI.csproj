@@ -17,10 +17,19 @@
 
   <ItemGroup>
     <_ContentIncludedByDefault Remove="Components\AddRecipeComponent.razor" />
+    <_ContentIncludedByDefault Remove="Shared\Footer.razor" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Infrastructure\Infrastructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Components\Recipe\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Shared\Footer.razor" />
   </ItemGroup>
 
 </Project>

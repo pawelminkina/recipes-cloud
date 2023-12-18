@@ -8,6 +8,7 @@ public partial class HomeComponent
 {
     [Inject] public IRecipeService RecipeService { get; set; } = null!;
 
+
     public List<RecipeDto> Recipes { get; set; } = new();
 
     protected override async Task OnInitializedAsync()

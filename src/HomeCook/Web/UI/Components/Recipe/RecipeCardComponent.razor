@@ -1,0 +1,23 @@
+﻿@using BlazorStrap
+@using Application.Models.Recipes
+@namespace UI.Components
+<BSCard CardType="CardType.Card" style="width: 18rem;">
+    <BSCard CardType="CardType.Image" src="@Recipe.MainPhotoUrl" alt="Card image cap" />
+    <BSCard CardType="CardType.Body">
+        <BSCard CardType="CardType.Title">@Recipe.Title</BSCard>
+        <BSCard CardType="CardType.Subtitle">@Recipe.AuthorEmail</BSCard>
+        <BSButton Color="BSColor.Primary" IsLink="true" OnClick="() => NavigateToRecipe(Recipe.Id)">Details</BSButton>
+    </BSCard>
+</BSCard>
+
+@code {
+    [Parameter, EditorRequired] public RecipeDto Recipe { get; set; } = new();
+
+    [Inject] public NavigationManager NavigationManager { get; set; } = null!;
+
+
+    public void NavigateToRecipe(Guid recipeId)
+    {
+        NavigationManager.NavigateTo($"/recipe/{recipeId}");
+    }
+}

@@ -1,0 +1,6 @@
+﻿@page "/recipe/{Id:guid}"
+<ViewRecipeComponent RecipeId="Id" />
+
+@code {
+    [Parameter] public Guid Id { get; set; }
+}
