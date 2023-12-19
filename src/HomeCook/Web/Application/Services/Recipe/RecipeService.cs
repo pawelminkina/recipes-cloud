@@ -17,7 +17,6 @@ public class RecipeService : IRecipeService
 
     public async Task<List<RecipeDto>> GetAllRecipes()
     {
-        await Task.Delay(2000);
         var response = await _recipeApiService.GetRecipes();
         var recipes = await Task.WhenAll(response!.Select(AssignPhotoToRecipe));
 

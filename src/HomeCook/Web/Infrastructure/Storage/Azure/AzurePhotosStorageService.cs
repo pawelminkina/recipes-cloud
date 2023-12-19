@@ -51,7 +51,6 @@ public class AzurePhotosStorageService : IPhotosStorageService
     public async Task AddFile(StorageFile file)
     {
         var client = new BlobClient(_options.Value.ConnectionString, _options.Value.PhotosContainerName, file.Path);
-
         if (client.Exists())
         {
             throw new ArgumentException($"There is already file with that name in the system, path: {file.Path}");

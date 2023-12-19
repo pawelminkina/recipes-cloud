@@ -1,4 +1,12 @@
-﻿@namespace UI.Components
+﻿@using BlazorStrap
+@namespace UI.Components
+
+@if (IsLoading)
+{
+    <div class="spinner-container">
+        <BSSpinner Color="BSColor.Primary" />
+    </div>
+}
 
 @if (Recipe != null)
 {

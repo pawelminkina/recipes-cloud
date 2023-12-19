@@ -15,10 +15,6 @@ public record RecipeToAddDto
     [Required(ErrorMessage = "Author email is required")]
     [EmailAddress(ErrorMessage = "Invalid email address")]
     public string AuthorEmail { get; set; }
-
-    [Required(ErrorMessage = "A main photo is required")]
-    [FileValidation(ErrorMessage = "Invalid file type. Allowed types: png, jpeg, gif")]
-    public IFormFile MainPhotoFile { get; set; }
     public Stream MainPhoto { get; set; }
     public string FileExtension { get; set; }
 }
