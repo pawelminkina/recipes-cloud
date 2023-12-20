@@ -32,10 +32,11 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v2
+        uses: hashicorp/setup-terraform@v1
         with:
           cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
-          directory: 'Scripts/Terraform'
+          tf_actions_working_dir: 'Scripts/Terraform'
+          terraform_wrapper: false
 
       - name: Terraform Init
         run: terraform init
