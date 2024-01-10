@@ -21,19 +21,18 @@ env:
 jobs:
   terraform_plan:
     runs-on: ubuntu-latest
+    env:
+      ARM_SKIP_PROVIDER_REGISTRATION: true
+
     steps:
       - uses: actions/checkout@v3
 
-      - name: Get PR ID
-        id: pr-id
-        shell: bash
-        env:
-          GITHUB_REF: ${{ inputs.github_ref }}
-        run: |
-          PR_NUMBER=$(echo $GITHUB_REF | awk 'BEGIN { FS = "/" } ; { print $3 }')
-          echo "PR_NUMBER=$PR_NUMBER" >> $GITHUB_OUTPUT
+      - name: Azure terraform plan
+        uses: ./.github/terraform-azure-plan
+        with:
+          terraform_directory: 'terraform'
 
-      - name: Azure terraform
-        uses: ./.github/terraform-azure
+      - name: Azure terraform apply
+        uses: ./.github/terraform-azure-apply
         with:
           terraform_directory: 'terraform'
