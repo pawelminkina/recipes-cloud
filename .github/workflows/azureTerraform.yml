@@ -27,6 +27,13 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - name: 'Az CLI login'
+        uses: azure/login@v1
+        with:
+          client-id: ${{ secrets.azure_client_id }}
+          tenant-id: ${{ secrets.azure_tenat_id }}
+          subscription-id: ${{ secrets.azure_subscription_id }}
+
       - name: Azure terraform plan
         uses: ./.github/terraform-azure-plan
         with:
