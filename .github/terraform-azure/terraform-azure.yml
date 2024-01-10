@@ -35,29 +35,16 @@ jobs:
           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
-      - name: 'Run Azure CLI commands'
-        run: |
-          az account show
-          az group list
-          pwd
-      - name: Checkout
-        uses: actions/checkout@v3
-
-      - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v1
-        with:
-          cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
-          tf_actions_working_dir: 'Scripts/Terraform'
-          terraform_wrapper: false
+      - name: Setup Terraform with specified version on the runner
+        uses: hashicorp/setup-terraform@v2
 
       - name: Terraform Init
         run: terraform init
-
-      - name: Terraform Format
-        run: terraform fmt -check
+        working-directory: ${{ inputs.terraform_directory }}
 
       - name: Terraform Plan
         id: tf-plan
+        working-directory: ${{ inputs.terraform_directory }}
         run: |
           export exitcode=0
           terraform plan -detailed-exitcode -no-color -out tfplan || export exitcode=$?
@@ -118,12 +105,17 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
+      - name: 'Az CLI login'
+        uses: azure/login@v1
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v2
-        with:
-          cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
 
       - name: Terraform Init
+        working-directory: ${{ inputs.terraform_directory }}
         run: terraform init
 
       - name: Download Terraform Plan
@@ -132,4 +124,5 @@ jobs:
           name: tfplan
 
       - name: Terraform Apply
+        working-directory: ${{ inputs.terraform_directory }}
         run: terraform apply -auto-approve tfplan
