@@ -5,13 +5,13 @@ inputs:
     description: 'Directory that holds Terraform code'
     required: true
   azure_client_id:
-    description: 'GitHub token for auth'
+    description: 'azure client id'
     required: true
   azure_tenat_id:
-    description: 'GitHub token for auth'
+    description: 'azure tenat id'
     required: true
   azure_subscription_id:
-    description: 'GitHub token for auth'
+    description: 'azure subscription id'
     required: true
 
 runs:

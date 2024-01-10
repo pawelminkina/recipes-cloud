@@ -5,13 +5,13 @@ inputs:
     description: 'Directory that holds Terraform code'
     required: true
   azure_client_id:
-    description: 'GitHub token for auth'
+    description: 'azure client id'
     required: true
   azure_tenat_id:
-    description: 'GitHub token for auth'
+    description: 'azure tenat id'
     required: true
   azure_subscription_id:
-    description: 'GitHub token for auth'
+    description: 'azure subscription id'
     required: true
 
 runs:
@@ -74,17 +74,3 @@ runs:
         SUMMARY: ${{ steps.tf-plan-string.outputs.summary }}
       run: |
         echo "$SUMMARY" >> $GITHUB_STEP_SUMMARY
-
-    - name: Push Terraform Output to PR
-      if: github.event_name == 'pull_request'
-      uses: actions/github-script@v6
-      with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
-        script: |
-          const body = `${process.env.SUMMARY}`;
-          github.rest.issues.createComment({
-            issue_number: context.issue.number,
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-            body: body
-          })

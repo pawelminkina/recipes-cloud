@@ -14,7 +14,7 @@ permissions:
   pull-requests: write
 
 jobs:
-  terraform_plan:
+  terraform:
     runs-on: ubuntu-latest
     env:
       ARM_SKIP_PROVIDER_REGISTRATION: true
