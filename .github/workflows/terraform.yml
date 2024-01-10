@@ -19,8 +19,14 @@ env:
   ARM_TENANT_ID: '${{ secrets.AZURE_TENANT_ID }}'
 
 jobs:
-  build-and-deploy:
+  terraform-plan:
+    name: 'Terraform Plan'
     runs-on: ubuntu-latest
+    env:
+      ARM_SKIP_PROVIDER_REGISTRATION: true
+    outputs:
+      tfplanExitCode: ${{ steps.tf-plan.outputs.exitcode }}
+
     steps:
       - name: 'Az CLI login'
         uses: azure/login@v1
@@ -34,16 +40,6 @@ jobs:
           az account show
           az group list
           pwd
-
-  terraform-plan:
-    name: 'Terraform Plan'
-    runs-on: ubuntu-latest
-    env:
-      ARM_SKIP_PROVIDER_REGISTRATION: true
-    outputs:
-      tfplanExitCode: ${{ steps.tf-plan.outputs.exitcode }}
-
-    steps:
       - name: Checkout
         uses: actions/checkout@v3
 
