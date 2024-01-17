@@ -29,6 +29,14 @@ resource "azurerm_service_plan" "service_plan_homecook" {
   sku_name            = "F1"
 }
 
+resource "azurerm_service_plan" "service_plan_homecook_azure_functions" {
+  name                = local.service_plan_af_consumption_homecook_name
+  resource_group_name = azurerm_resource_group.resource_group_homecook.name
+  location            = azurerm_resource_group.resource_group_homecook.location
+  os_type             = "Linux"
+  sku_name            = "Y1"
+}
+
 #web apps
 
 resource "azurerm_linux_web_app" "web_app_homecook_main" {
@@ -43,5 +51,6 @@ resource "azurerm_linux_web_app" "web_app_homecook_main" {
   }
 }
 
-#azure functions
 
+
+#azure functions
