@@ -19,7 +19,7 @@ env:
   ARM_TENANT_ID: '${{ secrets.AZURE_TENANT_ID }}'
 
 jobs:
-  terraform:
+  terraform_plan:
     runs-on: ubuntu-latest
 
     steps:
@@ -41,6 +41,21 @@ jobs:
         uses: ./.github/terraform-azure-apply
         with:
           terraform_directory: 'terraform'
-          azure_tenat_id: ${{ secrets.AZURE_TENANT_ID  }}
-          azure_client_id: ${{ secrets.AZURE_CLIENT_ID  }}
-          azure_subscription_id: ${{ secrets.AZURE_SUBSCRIPTION_ID  }}
+
+  terraform_apply:
+    needs: terraform_plan
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: 'Az CLI login'
+        uses: azure/login@v1
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+      - name: Azure terraform apply
+        uses: ./.github/terraform-azure-apply
+        with:
+          terraform_directory: 'terraform'
