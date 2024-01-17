@@ -8,12 +8,15 @@ locals {
     homecook_project_name = "homecook"
     short_location = var.location == "North Europe" ? "ne" : "we"
 
-    home_cook_rg_name                       = "${var.environment}-${local.short_location}-${local.homecook_project_name}-rg"
-    storage_account_homecook_files_api_name = "${var.environment}${local.short_location}${local.homecook_project_name}sa"
+    home_cook_rg_name                           = "${var.environment}-${local.short_location}-${local.homecook_project_name}-rg"
+    storage_account_homecook_files_api_name     = "${var.environment}${local.short_location}${local.homecook_project_name}sa"
+    storage_account_homecook_af_storage_name    = "${var.environment}${local.short_location}${local.homecook_project_name}afsa"
 
-    service_plan_af_consumption_homecook_name              = "${var.environment}-${local.short_location}-${local.homecook_project_name}-sp"
-    service_plan_homecook_name              = "${var.environment}-${local.short_location}-${local.homecook_project_name}-sp"
-    web_app_homecook_main_name              = "${var.environment}-${local.short_location}-${local.homecook_project_name}-wa"
+    service_plan_af_consumption_homecook_name   = "${var.environment}-${local.short_location}-${local.homecook_project_name}-sp"
+    service_plan_homecook_name                  = "${var.environment}-${local.short_location}-${local.homecook_project_name}-sp"
+    web_app_homecook_main_name                  = "${var.environment}-${local.short_location}-${local.homecook_project_name}-wa"
+    function_app_recipes_name                   = "${var.environment}-${local.short_location}-${local.homecook_project_name}-recipes-fa"
+    function_app_files_name                     = "${var.environment}-${local.short_location}-${local.homecook_project_name}-files-fa"
 }
 
 
