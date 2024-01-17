@@ -19,7 +19,7 @@ env:
   ARM_TENANT_ID: '${{ secrets.AZURE_TENANT_ID }}'
 
 jobs:
-  terraform_plan:
+  terraform_deploy:
     runs-on: ubuntu-latest
 
     steps:
