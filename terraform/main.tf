@@ -75,18 +75,6 @@ resource "azurerm_linux_function_app" "function_app_recipes" {
   site_config {}
 }
 
-resource "azurerm_linux_function_app" "function_app_recipes" {
-  name                = local.function_app_recipes_name
-  resource_group_name = azurerm_resource_group.resource_group_homecook.name
-  location            = azurerm_resource_group.resource_group_homecook.location
-  
-  storage_account_name       = azurerm_storage_account.storage_account_homecook_af_storage.name
-  storage_account_access_key = azurerm_storage_account.storage_account_homecook_af_storage.primary_access_key
-  service_plan_id            = azurerm_service_plan.service_plan_homecook_azure_functions.id
-
-  site_config {}
-}
-
 resource "azurerm_linux_function_app" "function_app_files" {
   name                = local.function_app_files_name
   resource_group_name = azurerm_resource_group.resource_group_homecook.name
