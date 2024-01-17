@@ -9,7 +9,9 @@ runs:
   using: 'composite'
   steps:
     - name: Setup Terraform with specified version on the runner
-      uses: hashicorp/setup-terraform@v2
+      uses: hashicorp/setup-terraform@v3
+      with:
+        terraform_wrapper: false
 
     - uses: actions/checkout@v3
 
