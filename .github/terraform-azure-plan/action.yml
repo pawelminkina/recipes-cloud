@@ -47,26 +47,3 @@ runs:
       with:
         name: tfplan
         path: tfplan
-
-    - name: Create String Output
-      shell: bash
-      id: tf-plan-string
-      run: |
-        TERRAFORM_PLAN=$(terraform show -no-color tfplan)
-        delimiter="$(openssl rand -hex 8)"
-        echo "summary<<${delimiter}" >> $GITHUB_ENV
-        echo "## Terraform Plan Output" >> $GITHUB_ENV
-        echo "<details><summary>Click to expand</summary>" >> $GITHUB_ENV
-        echo "" >> $GITHUB_ENV
-        echo '```terraform' >> $GITHUB_ENV
-        echo "$TERRAFORM_PLAN" >> $GITHUB_ENV
-        echo '```' >> $GITHUB_ENV
-        echo "</details>" >> $GITHUB_ENV
-        echo "${delimiter}" >> $GITHUB_ENV
-
-    - name: Publish Terraform Plan to Task Summary
-      shell: bash
-      env:
-        SUMMARY: ${{ steps.tf-plan-string.outputs.summary }}
-      run: |
-        echo "$SUMMARY" >> $GITHUB_STEP_SUMMARY
