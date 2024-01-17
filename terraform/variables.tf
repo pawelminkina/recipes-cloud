@@ -9,6 +9,7 @@ locals {
     short_location = var.location == "North Europe" ? "ne" : "we"
 
     home_cook_rg_name                           = "${var.environment}-${local.short_location}-${local.homecook_project_name}-rg"
+    home_cook_rg_azurefunctions_name            = "${var.environment}-${local.short_location}-${local.homecook_project_name}-functions-rg"
     storage_account_homecook_files_api_name     = "${var.environment}${local.short_location}${local.homecook_project_name}sa"
     storage_account_homecook_af_storage_name    = "${var.environment}${local.short_location}${local.homecook_project_name}afsa"
 
@@ -17,6 +18,10 @@ locals {
     web_app_homecook_main_name                  = "${var.environment}-${local.short_location}-${local.homecook_project_name}-wa"
     function_app_recipes_name                   = "${var.environment}-${local.short_location}-${local.homecook_project_name}-recipes-fa"
     function_app_files_name                     = "${var.environment}-${local.short_location}-${local.homecook_project_name}-files-fa"
+
+    sql_server_homecook_name                    = "${var.environment}-${local.short_location}-${local.homecook_project_name}-sqls"
+    sql_database_homecook_files_name            = "${var.environment}-${local.short_location}-${local.homecook_project_name}-files-sqldb"
+    sql_database_homecook_recipes_name          = "${var.environment}-${local.short_location}-${local.homecook_project_name}-recipes-sqldb"
 }
 
 

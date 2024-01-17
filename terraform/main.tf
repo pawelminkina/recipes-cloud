@@ -9,6 +9,11 @@ resource "azurerm_resource_group" "resource_group_homecook" {
   location = var.location
 }
 
+resource "azurerm_resource_group" "resource_group_homecook_azure_function" {
+  name     = local.home_cook_rg_azurefunctions_name
+  location = var.location
+}
+
 #storage accounts
 
 resource "azurerm_storage_account" "storage_account_homecook_files_api" {
@@ -21,8 +26,8 @@ resource "azurerm_storage_account" "storage_account_homecook_files_api" {
 
 resource "azurerm_storage_account" "storage_account_homecook_af_storage" {
   name                     = local.storage_account_homecook_af_storage_name
-  resource_group_name      = azurerm_resource_group.resource_group_homecook.name
-  location                 = azurerm_resource_group.resource_group_homecook.location
+  resource_group_name      = azurerm_resource_group.home_cook_rg_azurefunctions_name.name
+  location                 = azurerm_resource_group.home_cook_rg_azurefunctions_name.location
   account_tier             = "Standard"
   account_replication_type = "LRS"
 }
@@ -40,8 +45,8 @@ resource "azurerm_service_plan" "service_plan_homecook" {
 
 resource "azurerm_service_plan" "service_plan_homecook_azure_functions" {
   name                = local.service_plan_af_consumption_homecook_name
-  resource_group_name = azurerm_resource_group.resource_group_homecook.name
-  location            = azurerm_resource_group.resource_group_homecook.location
+  resource_group_name = azurerm_resource_group.home_cook_rg_azurefunctions_name.name
+  location            = azurerm_resource_group.home_cook_rg_azurefunctions_name.location
   os_type             = "Linux"
   sku_name            = "Y1"
 }
@@ -60,13 +65,11 @@ resource "azurerm_linux_web_app" "web_app_homecook_main" {
   }
 }
 
-
-
 #azure functions
 resource "azurerm_linux_function_app" "function_app_recipes" {
   name                = local.function_app_recipes_name
-  resource_group_name = azurerm_resource_group.resource_group_homecook.name
-  location            = azurerm_resource_group.resource_group_homecook.location
+  resource_group_name = azurerm_resource_group.home_cook_rg_azurefunctions_name.name
+  location            = azurerm_resource_group.home_cook_rg_azurefunctions_name.location
   
   storage_account_name       = azurerm_storage_account.storage_account_homecook_af_storage.name
   storage_account_access_key = azurerm_storage_account.storage_account_homecook_af_storage.primary_access_key
@@ -86,3 +89,30 @@ resource "azurerm_linux_function_app" "function_app_files" {
 
   site_config {}
 }
+
+# #sql server
+# resource "azurerm_sql_server" "sql_server_homecook" {
+#   name                         = "myexamplesqlserver"
+#   resource_group_name          = azurerm_resource_group.resource_group_homecook.name
+#   location                     = azurerm_resource_group.resource_group_homecook.location
+#   version                      = "12.0"
+#   administrator_login          = "4dm1n157r470r"
+#   administrator_login_password = "4-v3ry-53cr37-p455w0rd"
+#   tier = to be set not to fuck it up
+# }
+
+
+# #sql databases
+# resource "azurerm_sql_database" "example" {
+#   name                = local.sql_database_homecook_recipes_name
+#   resource_group_name = azurerm_resource_group.resource_group_homecook.name
+#   location            = azurerm_resource_group.resource_group_homecook.location
+#   server_name         = azurerm_sql_server.sql_server_homecook.name
+# }
+
+# resource "azurerm_sql_database" "example" {
+#   name                = local.sql_database_homecook_files_name
+#   resource_group_name = azurerm_resource_group.resource_group_homecook.name
+#   location            = azurerm_resource_group.resource_group_homecook.location
+#   server_name         = azurerm_sql_server.sql_server_homecook.name
+# }
