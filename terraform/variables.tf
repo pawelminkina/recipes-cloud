@@ -12,7 +12,7 @@ locals {
     storage_account_homecook_files_api_name     = "${var.environment}${local.short_location}${local.homecook_project_name}sa"
     storage_account_homecook_af_storage_name    = "${var.environment}${local.short_location}${local.homecook_project_name}afsa"
 
-    service_plan_af_consumption_homecook_name   = "${var.environment}-${local.short_location}-${local.homecook_project_name}-sp"
+    service_plan_af_consumption_homecook_name   = "${var.environment}-${local.short_location}-${local.homecook_project_name}-cons-sp"
     service_plan_homecook_name                  = "${var.environment}-${local.short_location}-${local.homecook_project_name}-sp"
     web_app_homecook_main_name                  = "${var.environment}-${local.short_location}-${local.homecook_project_name}-wa"
     function_app_recipes_name                   = "${var.environment}-${local.short_location}-${local.homecook_project_name}-recipes-fa"
