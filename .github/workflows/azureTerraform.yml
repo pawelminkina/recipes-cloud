@@ -37,11 +37,6 @@ jobs:
         with:
           terraform_directory: 'terraform'
 
-      - name: Azure terraform apply
-        uses: ./.github/terraform-azure-apply
-        with:
-          terraform_directory: 'terraform'
-
   terraform_apply:
     needs: terraform_plan
     runs-on: ubuntu-latest
