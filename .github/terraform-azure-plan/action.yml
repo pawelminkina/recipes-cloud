@@ -35,8 +35,13 @@ runs:
           exit 1
         fi
 
-    - name: Publish Terraform Plan
-      uses: actions/upload-artifact@v3
-      with:
-        name: tfplan
-        path: tfplan
+    - name: Terraform Apply
+      shell: bash
+      working-directory: ${{ inputs.terraform_directory }}
+      run: terraform apply -auto-approve tfplan
+
+    # - name: Publish Terraform Plan
+    #   uses: actions/upload-artifact@v3
+    #   with:
+    #     name: tfplan
+    #     path: tfplan
