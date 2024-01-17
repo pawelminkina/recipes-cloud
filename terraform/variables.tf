@@ -4,7 +4,7 @@ variable "environment" {
 }
 
 locals {
-    homecook_project_name = "hc"
+    homecook_project_name = "homecook"
     short_location = var.location == "North Europe" ? "ne" : "we"
 
     home_cook_rg_name                       = "${var.environment}-${local.short_location}-${local.homecook_project_name}-rg"
