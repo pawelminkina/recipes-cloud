@@ -1,5 +1,5 @@
-name: 'Terraform plan'
-description: 'Setup Terraform and creates plan'
+name: 'Terraform plan and apply'
+description: 'Setup Terraform and creates plan and apply it'
 inputs:
   terraform_directory:
     description: 'Directory that holds Terraform code'
@@ -39,9 +39,3 @@ runs:
       shell: bash
       working-directory: ${{ inputs.terraform_directory }}
       run: terraform apply -auto-approve tfplan
-
-    # - name: Publish Terraform Plan
-    #   uses: actions/upload-artifact@v3
-    #   with:
-    #     name: tfplan
-    #     path: tfplan
