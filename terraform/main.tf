@@ -30,6 +30,7 @@ resource "azurerm_storage_account" "storage_account_homecook_files_api" {
 #   resource_group_name = azurerm_resource_group.resource_group_homecook.name
 #   location            = azurerm_service_plan.service_plan_homecook.location
 #   service_plan_id     = azurerm_service_plan.service_plan_homecook.id
+#   enabled = false
 
 #   site_config {}
 # }
