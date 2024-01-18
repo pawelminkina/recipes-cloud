@@ -42,7 +42,7 @@ jobs:
       - name: Test with the dotnet CLI
         run: dotnet test src/HomeCook/HomeCook.sln -c Release --no-restore --no-build --verbosity normal --filter "Category!=LongRunning"
       - name: Publish UI web app
-        run: dotnet publish WebApi -c Release --no-build --output '${{ env.AZURE_WEBAPP_PACKAGE_PATH }}'
+        run: dotnet publish src/HomeCook/Web/UI -c Release --no-build --output '${{ env.AZURE_WEBAPP_PACKAGE_PATH }}'
 
   terraform_deploy:
     needs: dotnet_build_test
