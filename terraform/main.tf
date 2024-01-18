@@ -80,8 +80,8 @@ resource "azurerm_linux_function_app" "function_app_recipes" {
 
 resource "azurerm_linux_function_app" "function_app_files" {
   name                = local.function_app_files_name
-  resource_group_name = azurerm_resource_group.resource_group_homecook.name
-  location            = azurerm_resource_group.resource_group_homecook.location
+  resource_group_name = azurerm_resource_group.resource_group_homecook_azure_function.name
+  location            = azurerm_resource_group.resource_group_homecook_azure_function.location
   
   storage_account_name       = azurerm_storage_account.storage_account_homecook_af_storage.name
   storage_account_access_key = azurerm_storage_account.storage_account_homecook_af_storage.primary_access_key
