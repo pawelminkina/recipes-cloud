@@ -19,7 +19,7 @@ env:
   ARM_TENANT_ID: '${{ secrets.AZURE_TENANT_ID }}'
 
 jobs:
-  build:
+  dotnet_build_test:
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -39,6 +39,7 @@ jobs:
         run: dotnet test
 
   terraform_deploy:
+    needs: dotnet_build_test
     runs-on: ubuntu-latest
 
     steps:
