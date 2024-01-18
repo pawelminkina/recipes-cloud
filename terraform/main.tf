@@ -24,13 +24,13 @@ resource "azurerm_storage_account" "storage_account_homecook_files_api" {
   account_replication_type = "LRS"
 }
 
-resource "azurerm_storage_account" "storage_account_homecook_af_storage" {
-  name                     = local.storage_account_homecook_af_storage_name
-  resource_group_name      = azurerm_resource_group.resource_group_homecook_azure_function.name
-  location                 = azurerm_resource_group.resource_group_homecook_azure_function.location
-  account_tier             = "Standard"
-  account_replication_type = "LRS"
-}
+# resource "azurerm_storage_account" "storage_account_homecook_af_storage" {
+#   name                     = local.storage_account_homecook_af_storage_name
+#   resource_group_name      = azurerm_resource_group.resource_group_homecook_azure_function.name
+#   location                 = azurerm_resource_group.resource_group_homecook_azure_function.location
+#   account_tier             = "Standard"
+#   account_replication_type = "LRS"
+# }
 
 
 #service plans
