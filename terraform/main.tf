@@ -109,7 +109,7 @@ resource "azurerm_mssql_database" "sql_database_recipes" {
 }
 
 resource "azurerm_mssql_database" "sql_database_files" {
-  name                = local.sql_database_homecook_files_name
+  name           = local.sql_database_homecook_files_name
   server_id      = azurerm_mssql_server.sql_server_homecook.id
   sku_name       = "Basic"
 }
