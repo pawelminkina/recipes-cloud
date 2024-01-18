@@ -8,8 +8,8 @@ on:
     branches:
       - main
     paths:
-      - 'src/HomeCook/Services/**.cs'
-      - 'src/HomeCook/Web/**.csproj'
+      - '**.cs'
+      - '**.csproj'
 
 permissions:
   id-token: write
