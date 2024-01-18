@@ -65,7 +65,7 @@ resource "azurerm_linux_web_app" "web_app_homecook_main" {
   }
 }
 
-azure functions
+#azure functions
 resource "azurerm_linux_function_app" "function_app_recipes" {
   name                = local.function_app_recipes_name
   resource_group_name = azurerm_resource_group.resource_group_homecook_azure_function.name
