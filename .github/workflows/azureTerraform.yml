@@ -35,7 +35,7 @@ jobs:
         with:
           dotnet-version: ${{ matrix.dotnet-version }}
       - name: Install dependencies
-        run: dotnet restore src/HomeCook.sln
+        run: dotnet restore src/HomeCook/HomeCook.sln
       - name: Build
         run: dotnet build
       - name: Test with the dotnet CLI
