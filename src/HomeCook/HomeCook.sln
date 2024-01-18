@@ -21,8 +21,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Serverless.Azure", "Service
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "Services\Recipes\Infrastructure\Infrastructure.csproj", "{9B7CEA4F-7E17-487D-801D-AC931C6D4683}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlyForAddingMigrations", "OnlyForAddingMigrations\OnlyForAddingMigrations.csproj", "{3C76D7DD-EBA6-41C0-8BCE-796824FDE1EB}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Files", "Files", "{0DBE9D21-3065-4031-BD2E-7B626AC7A9F6}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{0E23DFE2-B4EC-4403-A47A-0F77119B2F74}"
@@ -35,9 +33,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Services\Files\Do
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Serverless.Azure", "Services\Files\Web\Serverless.Azure\Serverless.Azure.csproj", "{EC6D7C4F-3359-43E3-B83D-F1CFC06CE477}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "Web\Application\Application.csproj", "{475D490E-87BC-4CC3-8BE9-7739170D0A5E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "Web\Application\Application.csproj", "{475D490E-87BC-4CC3-8BE9-7739170D0A5E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "Web\Infrastructure\Infrastructure.csproj", "{6A4C8C79-F8F2-4AE9-8E64-A84263894D1C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "Web\Infrastructure\Infrastructure.csproj", "{6A4C8C79-F8F2-4AE9-8E64-A84263894D1C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -65,10 +63,6 @@ Global
 		{9B7CEA4F-7E17-487D-801D-AC931C6D4683}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9B7CEA4F-7E17-487D-801D-AC931C6D4683}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9B7CEA4F-7E17-487D-801D-AC931C6D4683}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3C76D7DD-EBA6-41C0-8BCE-796824FDE1EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3C76D7DD-EBA6-41C0-8BCE-796824FDE1EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3C76D7DD-EBA6-41C0-8BCE-796824FDE1EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3C76D7DD-EBA6-41C0-8BCE-796824FDE1EB}.Release|Any CPU.Build.0 = Release|Any CPU
 		{21A269C8-DBC0-4C86-AE3F-8B70DDC0AA29}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{21A269C8-DBC0-4C86-AE3F-8B70DDC0AA29}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{21A269C8-DBC0-4C86-AE3F-8B70DDC0AA29}.Release|Any CPU.ActiveCfg = Release|Any CPU
