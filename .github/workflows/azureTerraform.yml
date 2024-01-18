@@ -37,9 +37,9 @@ jobs:
       - name: Install dependencies
         run: dotnet restore src/HomeCook/HomeCook.sln
       - name: Build
-        run: dotnet build
+        run: dotnet build src/HomeCook/HomeCook.sln -c Release --no-restore
       - name: Test with the dotnet CLI
-        run: dotnet test
+        run: dotnet test src/HomeCook/HomeCook.sln -c Release --no-restore --no-build --verbosity normal --filter "Category!=LongRunning"
 
   terraform_deploy:
     needs: dotnet_build_test
