@@ -91,29 +91,25 @@ resource "azurerm_linux_function_app" "function_app_files" {
 }
 
 # #sql server
-# resource "azurerm_sql_server" "sql_server_homecook" {
-#   name                         = "myexamplesqlserver"
-#   resource_group_name          = azurerm_resource_group.resource_group_homecook.name
-#   location                     = azurerm_resource_group.resource_group_homecook.location
-#   version                      = "12.0"
-#   administrator_login          = "4dm1n157r470r"
-#   administrator_login_password = "4-v3ry-53cr37-p455w0rd"
-#   tier = to be set not to fuck it up
-# }
+resource "azurerm_mssql_server" "sql_server_homecook" {
+  name                         = local.sql_server_homecook_name
+  resource_group_name          = azurerm_resource_group.resource_group_homecook.name
+  location                     = azurerm_resource_group.resource_group_homecook.location
+  version                      = "12.0"
+  administrator_login          = "4dm1n157r470r"
+  administrator_login_password = "4-v3ry-53cr37-p455w0rd"
+}
 
 
 # #sql databases
-# resource "azurerm_sql_database" "example" {
-#   name                = local.sql_database_homecook_recipes_name
-#   resource_group_name = azurerm_resource_group.resource_group_homecook.name
-#   location            = azurerm_resource_group.resource_group_homecook.location
-#   server_name         = azurerm_sql_server.sql_server_homecook.name
-# }
+resource "azurerm_mssql_database" "sql_database_recipes" {
+  name           = local.sql_database_homecook_recipes_name
+  server_id      = azurerm_mssql_server.sql_server_homecook.id
+  sku_name       = "Basic"
+}
 
-# resource "azurerm_sql_database" "example" {
-#   name                = local.sql_database_homecook_files_name
-#   resource_group_name = azurerm_resource_group.resource_group_homecook.name
-#   location            = azurerm_resource_group.resource_group_homecook.location
-#   server_name         = azurerm_sql_server.sql_server_homecook.name
-#   edition = 
-# }
+resource "azurerm_mssql_database" "sql_database_files" {
+  name                = local.sql_database_homecook_files_name
+  server_id      = azurerm_mssql_server.sql_server_homecook.id
+  sku_name       = "Basic"
+}
