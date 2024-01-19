@@ -122,7 +122,7 @@ jobs:
         with:
           app-name: ${{ env.UI_WEBAPP_NAME }}
           publish-profile: ${{ steps.getPublishProfileUI.outputs.PUBLISH_PROFILE_WEBAPP_UI }}
-          package: '${{ env.AZURE_WEBAPP_PACKAGE_PATH }}'
+          package: 'src/HomeCook/Web/UI'
 
       - name: 'Deploy Files Azure Functions'
         uses: Azure/functions-action@v1
