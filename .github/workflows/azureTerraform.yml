@@ -55,6 +55,24 @@ jobs:
         run: dotnet publish src/HomeCook/Services/Files/Web/Serverless.Azure -c Release --no-build --property:PublishDir='${{ env.AZURE_FUNAPP_FILES_PACKAGE_PATH }}'
       - name: Publish recipes azure funtion
         run: dotnet publish src/HomeCook/Services/Recipes/Web/Serverless.Azure -c Release --no-build --property:PublishDir='${{ env.AZURE_FUNAPP_RECIPES_PACKAGE_PATH }}'
+      - name: 'Upload Artifact UI'
+        uses: actions/upload-artifact@v3
+        with:
+          name: FILES_FUNCAPP_NAME
+          path: ${{ env.AZURE_FUNAPP_FILES_PACKAGE_PATH }}
+          retention-days: 1
+      - name: 'Upload Artifact files func app'
+        uses: actions/upload-artifact@v3
+        with:
+          name: RECIPES_FUNCAPP_NAME
+          path: ${{ env.AZURE_FUNAPP_RECIPES_PACKAGE_PATH }}
+          retention-days: 1
+      - name: 'Upload Artifact recipes func app'
+        uses: actions/upload-artifact@v3
+        with:
+          name: UI_WEBAPP_NAME
+          path: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
+          retention-days: 1
 
   terraform_deploy:
     needs: dotnet_build_test
@@ -90,6 +108,21 @@ jobs:
         id: getPublishProfileRecipesFuncApp
         run: |
           echo "::set-output name=PUBLISH_PROFILE_FUNCAPP_RECIPES::$(az functionapp deployment list-publishing-profiles -g '${{ env.RECIPES_FUNCAPP_RESOURCEGROUP }}' -n '${{ env.RECIPES_FUNCAPP_NAME }}' --xml)"
+
+      - name: Download UI artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: UI_WEBAPP_NAME
+
+      - name: Download files func app artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: FILES_FUNCAPP_NAME
+
+      - name: Download recipes func app artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: RECIPES_FUNCAPP_NAME
 
       - name: Deploy UI
         uses: azure/webapps-deploy@v2
