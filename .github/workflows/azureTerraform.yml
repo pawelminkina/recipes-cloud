@@ -51,11 +51,11 @@ jobs:
       - name: Test with the dotnet CLI
         run: dotnet test src/HomeCook/HomeCook.sln -c Release --no-restore --no-build --verbosity normal --filter "Category!=LongRunning"
       - name: Publish UI web app
-        run: dotnet publish src/HomeCook/Web/UI -c Release --no-build --property:PublishDir='${{ env.AZURE_WEBAPP_PACKAGE_PATH }}'
+        run: dotnet publish src/HomeCook/Web/UI -c Release -o '.${{ env.AZURE_WEBAPP_PACKAGE_PATH }}'
       - name: Publish files azure function
-        run: dotnet publish src/HomeCook/Services/Files/Web/Serverless.Azure -c Release --no-build --property:PublishDir='${{ env.AZURE_FUNAPP_FILES_PACKAGE_PATH }}'
+        run: dotnet publish src/HomeCook/Services/Files/Web/Serverless.Azure -c Release -o '.${{ env.AZURE_FUNAPP_FILES_PACKAGE_PATH }}'
       - name: Publish recipes azure funtion
-        run: dotnet publish src/HomeCook/Services/Recipes/Web/Serverless.Azure -c Release --no-build --property:PublishDir='${{ env.AZURE_FUNAPP_RECIPES_PACKAGE_PATH }}'
+        run: dotnet publish src/HomeCook/Services/Recipes/Web/Serverless.Azure -c Release -o '.${{ env.AZURE_FUNAPP_RECIPES_PACKAGE_PATH }}'
       # - name: 'Upload Artifact UI'
       #   uses: actions/upload-artifact@v3
       #   with:
