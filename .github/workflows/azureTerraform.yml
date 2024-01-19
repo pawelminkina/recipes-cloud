@@ -102,14 +102,14 @@ jobs:
         uses: Azure/functions-action@v1
         with:
           app-name: ${{ env.FILES_FUNCAPP_NAME }}
-          package: '${{ env.AZURE_FUNAPP_FILES_PACKAGE_PATH'
+          package: '${{ env.AZURE_FUNAPP_FILES_PACKAGE_PATH }}'
           publish-profile: ${{ steps.getPublishProfileFilesFuncApp.outputs.PUBLISH_PROFILE_FUNCAPP_FILES }}
 
       - name: 'Deploy Recipes Azure Functions'
         uses: Azure/functions-action@v1
         with:
           app-name: ${{ env.RECIPES_FUNCAPP_NAME }}
-          package: '${{ env.AZURE_FUNAPP_RECIPES_PACKAGE_PATH'
+          package: '${{ env.AZURE_FUNAPP_RECIPES_PACKAGE_PATH }}'
           publish-profile: ${{ steps.getPublishProfileRecipesFuncApp.outputs.PUBLISH_PROFILE_FUNCAPP_RECIPES }}
 
       #https://www.milanjovanovic.tech/blog/how-to-build-ci-cd-pipeline-with-github-actions-and-dotnet
