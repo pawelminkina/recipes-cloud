@@ -90,10 +90,11 @@ resource "azurerm_linux_function_app" "function_app_recipes" {
   storage_account_name       = azurerm_storage_account.storage_account_homecook_af_storage.name
   storage_account_access_key = azurerm_storage_account.storage_account_homecook_af_storage.primary_access_key
   service_plan_id            = azurerm_service_plan.service_plan_homecook_azure_functions.id
-
+  
   site_config {}
 
   app_settings = {
+    "WEBSITE_RUN_FROM_PACKAGE" = 1
     "RecipeDatabaseConnectionString" = "Server=tcp:${azurerm_mssql_server.sql_server_homecook.fully_qualified_domain_name},1433;Initial Catalog=${azurerm_mssql_database.sql_database_recipes.name};Persist Security Info=False;User ID=${azurerm_mssql_server.sql_server_homecook.administrator_login};Password=${azurerm_mssql_server.sql_server_homecook.administrator_login_password};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=120;"
   }
 
@@ -113,6 +114,7 @@ resource "azurerm_linux_function_app" "function_app_files" {
   site_config {}
 
   app_settings = {
+    "WEBSITE_RUN_FROM_PACKAGE" = 1
     "FilesDatabaseConnectionString" = "Server=tcp:${azurerm_mssql_server.sql_server_homecook.fully_qualified_domain_name},1433;Initial Catalog=${azurerm_mssql_database.sql_database_files.name};Persist Security Info=False;User ID=${azurerm_mssql_server.sql_server_homecook.administrator_login};Password=${azurerm_mssql_server.sql_server_homecook.administrator_login_password};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=120;"
   }
 }
