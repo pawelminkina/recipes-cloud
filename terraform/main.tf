@@ -72,10 +72,10 @@ resource "azurerm_linux_web_app" "web_app_homecook_main" {
 
   app_settings = {
     "DeployedEnvironment"= "Azure"
-    "AzureStorageAccount:ConnectionString" = azurerm_storage_account.storage_account_homecook_files_api.primary_connection_string
-    "AzureStorageAccount:PhotosContainerName" = local.sa_container_homecook_files_api_name
-    "ServicesConfig:FileServiceBaseUrl" = "https://${azurerm_linux_function_app.function_app_files.default_hostname}"
-    "ServicesConfig:RecipeServiceBaseUrl" = "https://${azurerm_linux_function_app.function_app_recipes.default_hostname}"
+    "AzureStorageAccount__ConnectionString" = azurerm_storage_account.storage_account_homecook_files_api.primary_connection_string
+    "AzureStorageAccount__PhotosContainerName" = local.sa_container_homecook_files_api_name
+    "ServicesConfig__FileServiceBaseUrl" = "https://${azurerm_linux_function_app.function_app_files.default_hostname}"
+    "ServicesConfig__RecipeServiceBaseUrl" = "https://${azurerm_linux_function_app.function_app_recipes.default_hostname}"
   }
     depends_on = [azurerm_linux_function_app.function_app_recipes, azurerm_linux_function_app.function_app_files]
 }
