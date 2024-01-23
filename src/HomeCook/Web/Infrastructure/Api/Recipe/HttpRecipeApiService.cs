@@ -18,6 +18,7 @@ public class HttpRecipeApiService : IRecipeApiService
     {
         _serviceOptions = serviceOptions;
         _httpClient = httpClientFactory.CreateClient();
+        //_httpClient.DefaultRequestHeaders.Add("x-functions-key", _serviceOptions.Value.RecipeServiceFunctionKey);
     }
 
     public async Task<DetailedRecipeToGet> GetRecipe(Guid id)

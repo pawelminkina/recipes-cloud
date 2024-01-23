@@ -12,6 +12,8 @@ locals {
     home_cook_rg_azurefunctions_name            = "${var.environment}-${local.short_location}-${local.homecook_project_name}-functions-rg"
     storage_account_homecook_files_api_name     = "${var.environment}${local.short_location}${local.homecook_project_name}sa"
     storage_account_homecook_af_storage_name    = "${var.environment}${local.short_location}${local.homecook_project_name}afsa"
+    sa_container_homecook_files_api_name        = "homecook-files"
+
 
     service_plan_af_consumption_homecook_name   = "${var.environment}-${local.short_location}-${local.homecook_project_name}-cons-sp"
     service_plan_homecook_name                  = "${var.environment}-${local.short_location}-${local.homecook_project_name}-sp"

@@ -17,6 +17,7 @@ public class HttpPhotoApiService : IPhotoApiService
     {
         _serviceOptions = serviceOptions;
         _httpClient = httpClientFactory.CreateClient();
+        //_httpClient.DefaultRequestHeaders.Add("x-functions-key", _serviceOptions.Value.FileServiceFunctionKey);
     }
 
     public async Task<GetPhotoDto> GetPhoto(Guid photoId)
