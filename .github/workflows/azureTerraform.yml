@@ -54,7 +54,7 @@ jobs:
         run: dotnet publish src/HomeCook/Web/UI -c Release -o '${{ env.DOTNET_ROOT }}/myapp'
 
       - name: Upload artifact for deployment job
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: .net-app-web-ui
           path: ${{ env.DOTNET_ROOT }}/myapp
@@ -92,6 +92,7 @@ jobs:
           echo "::set-output name=PUBLISH_PROFILE_FUNCAPP_RECIPES::$(az functionapp deployment list-publishing-profiles -g '${{ env.RECIPES_FUNCAPP_RESOURCEGROUP }}' -n '${{ env.RECIPES_FUNCAPP_NAME }}' --xml)"
 
       - name: Download artifact from build job
+
         uses: actions/download-artifact@v4
         with:
           name: .net-app-web-ui
