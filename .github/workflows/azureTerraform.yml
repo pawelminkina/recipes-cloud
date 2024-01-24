@@ -51,7 +51,13 @@ jobs:
       - name: Test with the dotnet CLI
         run: dotnet test src/HomeCook/HomeCook.sln -c Release --no-restore --no-build --verbosity normal --filter "Category!=LongRunning"
       - name: Publish UI web app
-        run: dotnet publish src/HomeCook/Web/UI -c Release --property:PublishDir='${{ env.AZURE_WEBAPP_PACKAGE_PATH }}/myapp'
+        run: dotnet publish src/HomeCook/Web/UI -c Release -o '${{ env.DOTNET_ROOT }}/myapp'
+
+      - name: Upload artifact for deployment job
+        uses: actions/upload-artifact@v3
+        with:
+          name: .net-app-web-ui
+          path: ${{ env.DOTNET_ROOT }}/myapp
 
       # - name: Publish files azure function
       #   run: dotnet publish src/HomeCook/Services/Files/Web/Serverless.Azure -c Release -o './output'
@@ -85,12 +91,17 @@ jobs:
         run: |
           echo "::set-output name=PUBLISH_PROFILE_FUNCAPP_RECIPES::$(az functionapp deployment list-publishing-profiles -g '${{ env.RECIPES_FUNCAPP_RESOURCEGROUP }}' -n '${{ env.RECIPES_FUNCAPP_NAME }}' --xml)"
 
+      - name: Download artifact from build job
+        uses: actions/download-artifact@v4
+        with:
+          name: .net-app-web-ui
+
       - name: Deploy UI
         uses: azure/webapps-deploy@v2
         with:
           app-name: ${{ env.UI_WEBAPP_NAME }}
           publish-profile: ${{ steps.getPublishProfileUI.outputs.PUBLISH_PROFILE_WEBAPP_UI }}
-          package: '${{ env.AZURE_WEBAPP_PACKAGE_PATH }}/myapp'
+          package: .
 
       # - name: 'Deploy Files Azure Functions'
       #   uses: Azure/functions-action@v1
