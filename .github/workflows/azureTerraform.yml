@@ -26,7 +26,7 @@ env:
   ARM_CLIENT_ID: '${{ secrets.AZURE_CLIENT_ID }}'
   ARM_SUBSCRIPTION_ID: '${{ secrets.AZURE_SUBSCRIPTION_ID }}'
   ARM_TENANT_ID: '${{ secrets.AZURE_TENANT_ID }}'
-  AZURE_WEBAPP_PACKAGE_PATH: './ui'
+  AZURE_WEBAPP_PACKAGE_PATH: './src/HomeCook/Web/UI'
   AZURE_FUNAPP_FILES_PACKAGE_PATH: './files'
   AZURE_FUNAPP_RECIPES_PACKAGE_PATH: './recipes'
 
@@ -51,29 +51,12 @@ jobs:
       - name: Test with the dotnet CLI
         run: dotnet test src/HomeCook/HomeCook.sln -c Release --no-restore --no-build --verbosity normal --filter "Category!=LongRunning"
       - name: Publish UI web app
-        run: dotnet publish src/HomeCook/Web/UI -c Release -o './output'
-      - name: Publish files azure function
-        run: dotnet publish src/HomeCook/Services/Files/Web/Serverless.Azure -c Release -o './output'
-      - name: Publish recipes azure funtion
-        run: dotnet publish src/HomeCook/Services/Recipes/Web/Serverless.Azure -c Release -o './output'
-      # - name: 'Upload Artifact UI'
-      #   uses: actions/upload-artifact@v3
-      #   with:
-      #     name: FILES_FUNCAPP_NAME
-      #     path: ${{ env.AZURE_FUNAPP_FILES_PACKAGE_PATH }}
-      #     retention-days: 1
-      # - name: 'Upload Artifact files func app'
-      #   uses: actions/upload-artifact@v3
-      #   with:
-      #     name: RECIPES_FUNCAPP_NAME
-      #     path: ${{ env.AZURE_FUNAPP_RECIPES_PACKAGE_PATH }}
-      #     retention-days: 1
-      # - name: 'Upload Artifact recipes func app'
-      #   uses: actions/upload-artifact@v3
-      #   with:
-      #     name: UI_WEBAPP_NAME
-      #     path: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
-      #     retention-days: 1
+        run: dotnet publish src/HomeCook/Web/UI -c Release --property:PublishDir='${{ env.AZURE_WEBAPP_PACKAGE_PATH }}/myapp'
+
+      # - name: Publish files azure function
+      #   run: dotnet publish src/HomeCook/Services/Files/Web/Serverless.Azure -c Release -o './output'
+      # - name: Publish recipes azure funtion
+      #   run: dotnet publish src/HomeCook/Services/Recipes/Web/Serverless.Azure -c Release -o './output'
 
       - name: 'Az CLI login'
         uses: azure/login@v1
@@ -102,40 +85,25 @@ jobs:
         run: |
           echo "::set-output name=PUBLISH_PROFILE_FUNCAPP_RECIPES::$(az functionapp deployment list-publishing-profiles -g '${{ env.RECIPES_FUNCAPP_RESOURCEGROUP }}' -n '${{ env.RECIPES_FUNCAPP_NAME }}' --xml)"
 
-      # - name: Download UI artifact
-      #   uses: actions/download-artifact@v3
-      #   with:
-      #     name: UI_WEBAPP_NAME
-
-      # - name: Download files func app artifact
-      #   uses: actions/download-artifact@v3
-      #   with:
-      #     name: FILES_FUNCAPP_NAME
-
-      # - name: Download recipes func app artifact
-      #   uses: actions/download-artifact@v3
-      #   with:
-      #     name: RECIPES_FUNCAPP_NAME
-
       - name: Deploy UI
         uses: azure/webapps-deploy@v2
         with:
           app-name: ${{ env.UI_WEBAPP_NAME }}
           publish-profile: ${{ steps.getPublishProfileUI.outputs.PUBLISH_PROFILE_WEBAPP_UI }}
-          package: 'src/HomeCook/Web/UI/output'
+          package: '${{ env.AZURE_WEBAPP_PACKAGE_PATH }}/myapp'
 
-      - name: 'Deploy Files Azure Functions'
-        uses: Azure/functions-action@v1
-        with:
-          app-name: ${{ env.FILES_FUNCAPP_NAME }}
-          package: 'src/HomeCook/Services/Files/Web/Serverless.Azure/output'
-          publish-profile: ${{ steps.getPublishProfileFilesFuncApp.outputs.PUBLISH_PROFILE_FUNCAPP_FILES }}
+      # - name: 'Deploy Files Azure Functions'
+      #   uses: Azure/functions-action@v1
+      #   with:
+      #     app-name: ${{ env.FILES_FUNCAPP_NAME }}
+      #     package: 'src/HomeCook/Services/Files/Web/Serverless.Azure/output'
+      #     publish-profile: ${{ steps.getPublishProfileFilesFuncApp.outputs.PUBLISH_PROFILE_FUNCAPP_FILES }}
 
-      - name: 'Deploy Recipes Azure Functions'
-        uses: Azure/functions-action@v1
-        with:
-          app-name: ${{ env.RECIPES_FUNCAPP_NAME }}
-          package: 'src/HomeCook/Services/Recipes/Web/Serverless.Azure/output'
-          publish-profile: ${{ steps.getPublishProfileRecipesFuncApp.outputs.PUBLISH_PROFILE_FUNCAPP_RECIPES }}
+      # - name: 'Deploy Recipes Azure Functions'
+      #   uses: Azure/functions-action@v1
+      #   with:
+      #     app-name: ${{ env.RECIPES_FUNCAPP_NAME }}
+      #     package: 'src/HomeCook/Services/Recipes/Web/Serverless.Azure/output'
+      #     publish-profile: ${{ steps.getPublishProfileRecipesFuncApp.outputs.PUBLISH_PROFILE_FUNCAPP_RECIPES }}
 
       #https://www.milanjovanovic.tech/blog/how-to-build-ci-cd-pipeline-with-github-actions-and-dotnet
