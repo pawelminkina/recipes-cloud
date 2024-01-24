@@ -94,6 +94,7 @@ resource "azurerm_linux_function_app" "function_app_recipes" {
   site_config {
     application_stack {
       dotnet_version = "7.0"
+      use_dotnet_isolated_runtime = true
     }
   }
 
@@ -122,6 +123,7 @@ resource "azurerm_linux_function_app" "function_app_files" {
   site_config {
     application_stack {
       dotnet_version = "7.0"
+      use_dotnet_isolated_runtime = true
     }
   }
 
