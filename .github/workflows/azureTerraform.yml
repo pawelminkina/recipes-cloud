@@ -40,7 +40,7 @@ jobs:
     strategy:
       matrix:
         dotnet-version: ['7.0.x']
-    #
+    #s
     steps: #that can be azure specific as there is azure function part
       - uses: actions/checkout@v4
       - name: Setup dotnet
