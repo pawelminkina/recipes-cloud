@@ -31,7 +31,7 @@ env:
   AZURE_WEBAPP_PACKAGE_PATH: './src/HomeCook/Web/UI'
   AZURE_FUNAPP_FILES_PACKAGE_PATH: './files'
   AZURE_FUNAPP_RECIPES_PACKAGE_PATH: './recipes'
-  FILES_PHOTO_PATH: '/seeding'
+  FILES_PHOTO_PATH: 'seeding/'
 
 jobs:
   dotnet_build_test_deploy:
