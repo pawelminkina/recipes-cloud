@@ -22,7 +22,7 @@
                 <div class="mb-3">
                     <BSLabel for="fileInput">Main Photo</BSLabel>
                     <InputFile class="form-control" OnChange="@HandleFileSelected" />
-                    <BSLabel style="color: red;" @bind-IsHidden="IsHidden">File is required in formats: .jpg, .jpeg, .png, .webp</BSLabel>
+                    <BSLabel style="color: red;" @bind-IsHidden="FileErrorIsHidden">Max size 10MB. File is required in formats: .jpg, .jpeg, .png, .webp</BSLabel>
                 </div>
                 <div class="mb-3">
                     <BSLabel for="content">Content</BSLabel>
@@ -39,9 +39,10 @@
     [Inject] private IRecipeService RecipeService { get; set; } = null!;
     [Inject] private NavigationManager NavigationManager { get; set; } = null!;
 
-    private bool IsHidden = true;
+    private bool FileErrorIsHidden = true;
     private RecipeToAddDto RecipeToAdd = new RecipeToAddDto();
     private IBrowserFile? MainPhoto { get; set; } = null!;
+    private const long FileSize = 1024 * 1000 * 10;
 
     private async Task HandleFileSelected(InputFileChangeEventArgs e)
     {
@@ -49,26 +50,27 @@
         var extensions = new[] {".jpg", ".jpeg", ".png", ".webp"};
         var file = e.File;
         var extension = Path.GetExtension(file.Name);
-        if (extensions.Contains(extension))
+        if (extensions.Contains(extension) && e.File.Size < FileSize)
         {
             if (file != null)
             {
                 MainPhoto = file;
-                IsHidden = true;
+                FileErrorIsHidden = true;
                 return;
             }
         }
-        IsHidden = false;
+
+        FileErrorIsHidden = false;
     }
 
     private async Task HandleValidSubmit()
     {
         if (MainPhoto == null)
         {
-            IsHidden = false;
+            FileErrorIsHidden = false;
             return;
         }
-        using var ms = MainPhoto.OpenReadStream();
+        using var ms = MainPhoto.OpenReadStream(FileSize);
         RecipeToAdd.MainPhoto = ms;
         RecipeToAdd.FileExtension = Path.GetExtension(MainPhoto.Name);
         var recipeId = await RecipeService.AddRecipe(RecipeToAdd);
