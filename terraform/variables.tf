@@ -1,4 +1,6 @@
-variable "location" {}
+variable "location" {
+    default = "ne"
+}
 variable "environment" {
       default = "dev"
 }
