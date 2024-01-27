@@ -149,7 +149,7 @@ resource "azurerm_windows_function_app" "function_app_files" {
   }
 }
 
-# #sql server
+#sql server
 resource "azurerm_mssql_server" "sql_server_homecook" {
   name                         = local.sql_server_homecook_name
   resource_group_name          = azurerm_resource_group.resource_group_homecook.name
