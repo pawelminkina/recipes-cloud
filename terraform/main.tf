@@ -125,6 +125,7 @@ resource "azurerm_windows_function_app" "function_app_files" {
   location            = azurerm_resource_group.resource_group_homecook.location
   public_network_access_enabled = true
   enabled = true
+  
   storage_account_name       = azurerm_storage_account.storage_account_homecook_af_storage.name
   storage_account_access_key = azurerm_storage_account.storage_account_homecook_af_storage.primary_access_key
   service_plan_id            = azurerm_service_plan.service_plan_homecook_azure_functions.id
@@ -170,4 +171,11 @@ resource "azurerm_mssql_database" "sql_database_files" {
   name           = local.sql_database_homecook_files_name
   server_id      = azurerm_mssql_server.sql_server_homecook.id
   sku_name       = "Basic"
+}
+
+resource "azurerm_mssql_firewall_rule" "internal_azure_connection_homecook" {
+  name             = "FirewallRule1"
+  server_id        = azurerm_mssql_server.sql_server_homecook.id
+  start_ip_address = "0.0.0.0"
+  end_ip_address   = "0.0.0.0"
 }
