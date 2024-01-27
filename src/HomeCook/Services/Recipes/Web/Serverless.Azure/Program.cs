@@ -10,4 +10,6 @@ var host = new HostBuilder()
         s.AddApplication();
     })
     .Build();
+
+host.Services.MigrateDatabase();
 host.Run();

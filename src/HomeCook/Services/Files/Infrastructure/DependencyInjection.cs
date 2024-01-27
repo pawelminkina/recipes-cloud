@@ -17,4 +17,13 @@ public static class DependencyInjection
 
         serviceCollection.AddScoped<IFilesDbContext, FilesDbContext>();
     }
+
+    public static void MigrateDatabase(this IServiceProvider provider)
+    {
+        using (var scope = provider.CreateScope())
+        {
+            var db = scope.ServiceProvider.GetRequiredService<FilesDbContext>();
+            db.Database.Migrate();
+        }
+    }
 }
