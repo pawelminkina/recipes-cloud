@@ -60,7 +60,7 @@ jobs:
 
       - name: Publish files azure function
         run: dotnet publish src/HomeCook/Services/Files/Web/Serverless.Azure -c Release -o '${{ env.DOTNET_ROOT }}/filesazfunc'
-
+      #
       - name: Publish recipes azure funtion
         run: dotnet publish src/HomeCook/Services/Recipes/Web/Serverless.Azure -c Release -o '${{ env.DOTNET_ROOT }}/recipesazfunc'
 
