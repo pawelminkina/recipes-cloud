@@ -19,14 +19,6 @@ resource "azurerm_storage_account" "storage_account_homecook_files_api" {
   account_replication_type = "LRS"
 }
 
-resource "azurerm_storage_account" "storage_account_homecook_af_storage" {
-  name                     = local.storage_account_homecook_af_storage_name
-  resource_group_name      = azurerm_resource_group.resource_group_homecook.name
-  location                 = azurerm_resource_group.resource_group_homecook.location
-  account_tier             = "Standard"
-  account_replication_type = "LRS"
-}
-
 resource "azurerm_storage_container" "container_files_api" {
   name                  = local.sa_container_homecook_files_api_name
   storage_account_name  = azurerm_storage_account.storage_account_homecook_files_api.name
