@@ -8,7 +8,7 @@ variable "sql_database_pwd" {
       default = ""
       sensitive = true
 }
-#asf
+
 locals {
     
     homecook_project_name = "homecook"
