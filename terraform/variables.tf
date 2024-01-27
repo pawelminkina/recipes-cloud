@@ -1,5 +1,5 @@
 variable "location" {
-    default = "ne"
+    default = "northeurope"
 }
 variable "environment" {
       default = "dev"
@@ -12,7 +12,7 @@ variable "sql_database_pwd" {
 locals {
     
     homecook_project_name = "homecook"
-    short_location = var.location == "North Europe" ? "ne" : "we"
+    short_location = var.location == "northeurope" ? "ne" : "we"
 
     home_cook_rg_name                           = "${var.environment}-${local.short_location}-${local.homecook_project_name}-rg"
     home_cook_rg_azurefunctions_name            = "${var.environment}-${local.short_location}-${local.homecook_project_name}-functions-rg"
