@@ -4,6 +4,7 @@ variable "environment" {
 }
 variable "sql_database_pwd" {
       default = ""
+      sensitive = true
 }
 #asf
 locals {

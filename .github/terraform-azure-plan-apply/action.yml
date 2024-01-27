@@ -4,6 +4,9 @@ inputs:
   terraform_directory:
     description: 'Directory that holds Terraform code'
     required: true
+  sql_database_password:
+    required: true
+    description: 'Pwd to sql server'
 
 runs:
   using: 'composite'
@@ -28,7 +31,7 @@ runs:
       working-directory: ${{ inputs.terraform_directory }}
       run: |
         export exitcode=0
-        terraform plan -detailed-exitcode -no-color -out tfplan || export exitcode=$?
+        terraform plan -detailed-exitcode -no-color -out tfplan -var='sql_database_pwd=${{inputs.sql_database_password}}' || export exitcode=$?
         echo "exitcode=$exitcode" >> $GITHUB_ENV
         if [ $exitcode -eq 1 ]; then
           echo "Terraform Plan Failed!"
