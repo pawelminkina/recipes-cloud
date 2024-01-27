@@ -79,9 +79,9 @@ resource "azurerm_windows_web_app" "web_app_homecook_main" {
   }
 
   app_settings = {
-  APPINSIGHTS_INSTRUMENTATIONKEY =  azurerm_application_insights.webapp_app_insight.instrumentation_key
-    APPLICATIONINSIGHTS_CONNECTION_STRING =  azurerm_application_insights.webapp_app_insight.connection_string
-    ApplicationInsightsAgent_EXTENSION_VERSION = "~3"
+    "APPINSIGHTS_INSTRUMENTATIONKEY" =  azurerm_application_insights.webapp_app_insight.instrumentation_key
+    "APPLICATIONINSIGHTS_CONNECTION_STRING" =  azurerm_application_insights.webapp_app_insight.connection_string
+    "ApplicationInsightsAgent_EXTENSION_VERSION" = "~3"
     "DeployedEnvironment"= "Azure"
     "WEBSITE_RUN_FROM_PACKAGE" = 1
     "AzureStorageAccount__ConnectionString" = azurerm_storage_account.storage_account_homecook_files_api.primary_connection_string
@@ -111,6 +111,9 @@ resource "azurerm_windows_function_app" "function_app_recipes" {
   }
 
   app_settings = {
+    "APPINSIGHTS_INSTRUMENTATIONKEY" =  azurerm_application_insights.webapp_app_insight.instrumentation_key
+    "APPLICATIONINSIGHTS_CONNECTION_STRING" =  azurerm_application_insights.webapp_app_insight.connection_string
+    "ApplicationInsightsAgent_EXTENSION_VERSION" = "~3"
     "WEBSITE_RUN_FROM_PACKAGE" = 1
     "FUNCTIONS_EXTENSION_VERSION"         = "~4"
     "FUNCTIONS_WORKER_RUNTIME"            = "dotnet-isolated"
@@ -139,6 +142,9 @@ resource "azurerm_windows_function_app" "function_app_files" {
   }
 
   app_settings = {
+    "APPINSIGHTS_INSTRUMENTATIONKEY" =  azurerm_application_insights.webapp_app_insight.instrumentation_key
+    "APPLICATIONINSIGHTS_CONNECTION_STRING" =  azurerm_application_insights.webapp_app_insight.connection_string
+    "ApplicationInsightsAgent_EXTENSION_VERSION" = "~3"
     "FUNCTIONS_EXTENSION_VERSION"         = "~4"
     "FUNCTIONS_WORKER_RUNTIME"            = "dotnet-isolated"
     "SCM_DO_BUILD_DURING_DEPLOYMENT" = true
