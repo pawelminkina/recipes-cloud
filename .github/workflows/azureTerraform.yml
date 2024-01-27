@@ -37,6 +37,8 @@ jobs:
   dotnet_build_test_deploy:
     runs-on: ubuntu-latest
     environment: production
+    env:
+      TF_VAR_sql_database_pwd: ${{ secrets.SQL_DATABASE_PASSWORD }}
     strategy:
       matrix:
         dotnet-version: ['7.0.x']
@@ -73,8 +75,6 @@ jobs:
         uses: ./.github/terraform-azure-plan-apply
         with:
           terraform_directory: 'terraform'
-        env:
-          TF_VAR_sql_database_pwd: ${{ secrets.SQL_DATABASE_PASSWORD }}
 
       - name: Get Publish Profile UI
         id: getPublishProfileUI
