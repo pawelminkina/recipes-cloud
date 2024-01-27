@@ -72,6 +72,7 @@ resource "azurerm_linux_web_app" "web_app_homecook_main" {
 
   app_settings = {
     "DeployedEnvironment"= "Azure"
+    "WEBSITE_RUN_FROM_PACKAGE" = 1
     "AzureStorageAccount__ConnectionString" = azurerm_storage_account.storage_account_homecook_files_api.primary_connection_string
     "AzureStorageAccount__PhotosContainerName" = local.sa_container_homecook_files_api_name
     "ServicesConfig__FileServiceBaseUrl" = "https://${azurerm_linux_function_app.function_app_files.default_hostname}"
