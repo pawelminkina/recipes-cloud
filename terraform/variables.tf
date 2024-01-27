@@ -2,7 +2,7 @@ variable "location" {}
 variable "environment" {
       default = "dev"
 }
-variable "SQL_DATABASE_PASSWORD" {
+variable "sql_database_pwd" {
       default = ""
 }
 #asf

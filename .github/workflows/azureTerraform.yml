@@ -74,7 +74,7 @@ jobs:
         with:
           terraform_directory: 'terraform'
         env:
-          SQL_DATABASE_PASSWORD: ${{ secrets.SQL_DATABASE_PASSWORD }}
+          TF_VAR_sql_database_pwd: ${{ secrets.SQL_DATABASE_PASSWORD }}
 
       - name: Get Publish Profile UI
         id: getPublishProfileUI

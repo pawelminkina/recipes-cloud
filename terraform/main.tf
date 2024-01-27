@@ -156,7 +156,7 @@ resource "azurerm_mssql_server" "sql_server_homecook" {
   location                     = azurerm_resource_group.resource_group_homecook.location
   version                      = "12.0"
   administrator_login          = "4dm1n157r470r" #that set from pipeline
-  administrator_login_password = var.SQL_DATABASE_PASSWORD
+  administrator_login_password = var.sql_database_pwd
 }
 
 
