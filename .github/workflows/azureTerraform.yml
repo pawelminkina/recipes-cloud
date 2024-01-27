@@ -37,8 +37,6 @@ jobs:
   dotnet_build_test_deploy:
     runs-on: ubuntu-latest
     environment: production
-    env:
-      TF_VAR_sql_database_pwd: ${{ secrets.SQL_DATABASE_PASSWORD }}
     strategy:
       matrix:
         dotnet-version: ['7.0.x']
