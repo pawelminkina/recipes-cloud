@@ -28,7 +28,7 @@
                     <BSLabel for="content">Content</BSLabel>
                     <BSInput InputType="InputType.TextArea" id="content" @bind-Value="@RecipeToAdd.Content" />
                 </div>
-                <BSButton Color="BSColor.Success" type="submit">Submit</BSButton>
+                <BSButton @bind-IsDisabled="_submitButtonDisabled" Color="BSColor.Success" type="submit">Submit</BSButton>
             </div>
 
         </EditForm>
@@ -40,6 +40,7 @@
     [Inject] private NavigationManager NavigationManager { get; set; } = null!;
 
     private bool FileErrorIsHidden = true;
+    private bool _submitButtonDisabled = false;
     private RecipeToAddDto RecipeToAdd = new RecipeToAddDto();
     private IBrowserFile? MainPhoto { get; set; } = null!;
     private const long FileSize = 1024 * 1000 * 10;
@@ -65,8 +66,10 @@
 
     private async Task HandleValidSubmit()
     {
+        _submitButtonDisabled = true;
         if (MainPhoto == null)
         {
+            _submitButtonDisabled = false;
             FileErrorIsHidden = false;
             return;
         }
