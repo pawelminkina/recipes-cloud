@@ -32,7 +32,6 @@ env:
   AZURE_FUNAPP_FILES_PACKAGE_PATH: './files'
   AZURE_FUNAPP_RECIPES_PACKAGE_PATH: './recipes'
   FILES_PHOTO_PATH: 'seeding/'
-  SQL_DATABASE_PASSWORD: '${{ secrets.SQL_DATABASE_PASSWORD }}'
 
 jobs:
   dotnet_build_test_deploy:
@@ -74,6 +73,7 @@ jobs:
         uses: ./.github/terraform-azure-plan-apply
         with:
           terraform_directory: 'terraform'
+        env: SQL_DATABASE_PASSWORD:'${{ secrets.SQL_DATABASE_PASSWORD }}'
 
       - name: Get Publish Profile UI
         id: getPublishProfileUI
