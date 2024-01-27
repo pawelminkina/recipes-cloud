@@ -73,7 +73,8 @@ jobs:
         uses: ./.github/terraform-azure-plan-apply
         with:
           terraform_directory: 'terraform'
-        env: SQL_DATABASE_PASSWORD:'${{ secrets.SQL_DATABASE_PASSWORD }}'
+        env:
+          SQL_DATABASE_PASSWORD: ${{ secrets.SQL_DATABASE_PASSWORD }}
 
       - name: Get Publish Profile UI
         id: getPublishProfileUI
