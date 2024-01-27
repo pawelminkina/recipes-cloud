@@ -57,6 +57,14 @@ resource "azurerm_service_plan" "service_plan_homecook_azure_functions" {
   sku_name            = "Y1"
 }
 
+# app insight 
+resource "azurerm_application_insights" "webapp_app_insight" {
+  name                = local.ui_app_insight_name
+  resource_group_name = azurerm_resource_group.resource_group_homecook_azure_function.name
+  location            = azurerm_resource_group.resource_group_homecook_azure_function.location
+  application_type    = "web"
+}
+
 #web apps
 
 resource "azurerm_windows_web_app" "web_app_homecook_main" {
@@ -71,6 +79,9 @@ resource "azurerm_windows_web_app" "web_app_homecook_main" {
   }
 
   app_settings = {
+  APPINSIGHTS_INSTRUMENTATIONKEY =  azurerm_application_insights.webapp_app_insight.instrumentation_key
+    APPLICATIONINSIGHTS_CONNECTION_STRING =  azurerm_application_insights.webapp_app_insight.connection_string
+    ApplicationInsightsAgent_EXTENSION_VERSION = "~3"
     "DeployedEnvironment"= "Azure"
     "WEBSITE_RUN_FROM_PACKAGE" = 1
     "AzureStorageAccount__ConnectionString" = azurerm_storage_account.storage_account_homecook_files_api.primary_connection_string
@@ -78,7 +89,7 @@ resource "azurerm_windows_web_app" "web_app_homecook_main" {
     "ServicesConfig__FileServiceBaseUrl" = "https://${azurerm_windows_function_app.function_app_files.default_hostname}"
     "ServicesConfig__RecipeServiceBaseUrl" = "https://${azurerm_windows_function_app.function_app_recipes.default_hostname}"
   }
-    depends_on = [azurerm_windows_function_app.function_app_recipes, azurerm_windows_function_app.function_app_files]
+    depends_on = [azurerm_windows_function_app.function_app_recipes, azurerm_windows_function_app.function_app_files, azurerm_application_insights.webapp_app_insight]
 }
 
 #azure functions

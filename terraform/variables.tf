@@ -15,11 +15,14 @@ locals {
     sa_container_homecook_files_api_name        = "homecook-files"
 
 
+
     service_plan_af_consumption_homecook_name   = "${var.environment}-${local.short_location}-${local.homecook_project_name}-cons-sp"
     service_plan_homecook_name                  = "${var.environment}-${local.short_location}-${local.homecook_project_name}-sp"
     web_app_homecook_main_name                  = "${var.environment}-${local.short_location}-${local.homecook_project_name}-wa"
     function_app_recipes_name                   = "${var.environment}-${local.short_location}-${local.homecook_project_name}-recipes-fa"
     function_app_files_name                     = "${var.environment}-${local.short_location}-${local.homecook_project_name}-files-fa"
+
+    ui_app_insight_name   = "${var.environment}-${local.short_location}-${local.homecook_project_name}-ui-ai"
 
     sql_server_homecook_name                    = "${var.environment}-${local.short_location}-${local.homecook_project_name}-sqls"
     sql_database_homecook_files_name            = "${var.environment}-${local.short_location}-${local.homecook_project_name}-files-sqldb"
