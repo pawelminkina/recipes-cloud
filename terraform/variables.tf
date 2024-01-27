@@ -2,6 +2,9 @@ variable "location" {}
 variable "environment" {
       default = "dev"
 }
+variable "SQL_DATABASE_PASSWORD" {
+      default = ""
+}
 
 locals {
     
