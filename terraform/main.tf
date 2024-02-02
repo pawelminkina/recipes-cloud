@@ -164,17 +164,13 @@ resource "azurerm_mssql_server" "sql_server_homecook" {
 resource "azurerm_mssql_database" "sql_database_recipes" {
   name           = local.sql_database_homecook_recipes_name
   server_id      = azurerm_mssql_server.sql_server_homecook.id
-  sku_name       = "GP_S_Gen5_1"
-  max_size_gb                 = 2
-  auto_pause_delay_in_minutes = 60
+  sku_name       = "Basic"
 }
 
 resource "azurerm_mssql_database" "sql_database_files" {
   name           = local.sql_database_homecook_files_name
   server_id      = azurerm_mssql_server.sql_server_homecook.id
-  sku_name       = "GP_S_Gen5_1"
-  max_size_gb                 = 2
-  auto_pause_delay_in_minutes = 60
+  sku_name       = "Basic"
 }
 
 resource "azurerm_mssql_firewall_rule" "internal_azure_connection_homecook" {
